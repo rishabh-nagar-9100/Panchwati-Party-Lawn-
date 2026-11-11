@@ -28,6 +28,7 @@
 <meta name="theme-color" content="#0f1120">
 <link rel="preload" as="image" href="img/gate.webp" imagesrcset="img/gate-640.webp 640w, img/gate-1024.webp 1024w, img/gate.webp 1200w" imagesizes="100vw" fetchpriority="high">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"EventVenue","name":"Panchwati Party Lawn","alternateName":"पंचवटी पार्टी लॉन","url":"https://panchwati-party-lawn.vercel.app/","telephone":"+919311142008","address":{"@type":"PostalAddress","streetAddress":"Shaheed Captain Manoj Pandey Marg, Kanawani Village, Indirapuram","addressLocality":"Ghaziabad","addressRegion":"Uttar Pradesh","postalCode":"201014","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":28.652288,"longitude":77.377687},"hasMap":"https://maps.app.goo.gl/ACUW17NnURoBMpJe8","maximumAttendeeCapacity":1000,"image":["https://panchwati-party-lawn.vercel.app/img/og.jpg","https://panchwati-party-lawn.vercel.app/img/gate.webp","https://panchwati-party-lawn.vercel.app/img/lawn.webp","https://panchwati-party-lawn.vercel.app/img/stage.webp"],"description":"Party lawn and banquet hall in Indirapuram, Ghaziabad for weddings, receptions, engagements, haldi and mehendi, birthdays, anniversaries and corporate dinners. Open lawn for 200 to 1000 guests, banquet hall for 1000, parking for 500 cars.","priceRange":"₹₹","areaServed":["Ghaziabad","Indirapuram","Noida","Delhi NCR"],"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Open lawn","value":true},{"@type":"LocationFeatureSpecification","name":"Banquet hall","value":true},{"@type":"LocationFeatureSpecification","name":"Parking","value":true}],"publicAccess":true,"isAccessibleForFree":false}</script>
+<script type="application/ld+json" id="faqLd">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I confirm a date?","acceptedAnswer":{"@type":"Answer","text":"A date is confirmed with an advance of 10% of the total amount. Until then it can only be kept on hold."}},{"@type":"Question","name":"What if I have to cancel?","acceptedAnswer":{"@type":"Answer","text":"If a booking is cancelled, 50% of the advance is retained and the rest is returned."}},{"@type":"Question","name":"Until what time can music play?","acceptedAnswer":{"@type":"Answer","text":"Music and DJ run until 10 pm, in line with local rules."}},{"@type":"Question","name":"How many guests can you host?","acceptedAnswer":{"@type":"Answer","text":"The open lawn takes 200 – 1000 guests and the banquet hall up to 1000. There is parking for about 500 cars."}},{"@type":"Question","name":"Can I see the venue before booking?","acceptedAnswer":{"@type":"Answer","text":"Yes. WhatsApp or call us and we will fix a time for a site visit."}},{"@type":"Question","name":"What does it cost?","acceptedAnswer":{"@type":"Answer","text":"Every function is priced on its date, guest count, menu and décor. Send an enquiry and we reply with a quote."}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Jost:wght@300;400;500&family=Tiro+Devanagari+Hindi&display=swap" media="print" onload="this.media='all'">
@@ -222,6 +223,7 @@ html[lang=hi] .evtabs button span{font-family:var(--f-display);font-size:14px;le
 .evgrid figure:hover img{transform:scale(1.05)}
 .evgrid figcaption{font-family:var(--f-display);font-style:italic;font-size:18px;color:var(--ink)}
 .evpanel.swap .evgrid{animation:evin .7s ease}
+#evPanels .evpanel[hidden]{display:none}
 @keyframes evin{from{opacity:0;transform:translateY(16px)}}
 @media (max-width:760px){.evgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:420px){.evgrid{grid-template-columns:1fr}}
@@ -373,9 +375,9 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2z" fill="currentColor"/></svg></div>
         <p class="reveal" data-i18n="story.p">From the lit floral gate to the chandelier corridor, the rose-wall stage and the open lawn under the stars, Panchwati is built for Indian celebrations. Your baraat, jaimala, dinner and dance all happen in one place, and your guests never have to move venues.</p>
         <div class="facts reveal">
-          <div><b id="capLawn"></b><span data-i18n="fact.lawn">Guests on the open lawn</span></div>
-          <div><b id="capHall"></b><span data-i18n="fact.hall">Guests in the banquet hall</span></div>
-          <div><b id="capPark"></b><span data-i18n="fact.park">Cars parked on site</span></div>
+          <div><b id="capLawn">200 – 1000</b><span data-i18n="fact.lawn">Guests on the open lawn</span></div>
+          <div><b id="capHall">1000</b><span data-i18n="fact.hall">Guests in the banquet hall</span></div>
+          <div><b id="capPark">500</b><span data-i18n="fact.park">Cars parked on site</span></div>
           <div><b data-i18n="fact.stage">Royal stage</b><span data-i18n="fact.stage2">Jaimala &amp; reception</span></div>
         </div>
       </div>
@@ -446,7 +448,7 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
           <div class="done" id="done" hidden>
             <span class="kicker" data-i18n="d.k">Your enquiry</span>
             <pre id="msg"></pre>
-            <div class="row"><a class="btn" id="waLink" href="#" target="_blank" rel="noopener" data-i18n="d.open">Open in WhatsApp</a><button class="btn ghost" id="copyBtn" type="button" data-i18n="d.copy">Copy</button><button class="btn ghost" id="editBtn" type="button" data-i18n="d.edit">Edit</button></div>
+            <div class="row"><a class="btn" id="waLink" href="https://wa.me/918130717313" target="_blank" rel="noopener" data-i18n="d.open">Open in WhatsApp</a><button class="btn ghost" id="copyBtn" type="button" data-i18n="d.copy">Copy</button><button class="btn ghost" id="editBtn" type="button" data-i18n="d.edit">Edit</button></div>
             <p class="note" id="copyNote" data-i18n="d.note">WhatsApp opens with this message ready. Tap send there to reach us.</p>
           </div>
         </div>
@@ -459,23 +461,72 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
     <div class="wrap chead" style="margin-bottom:40px"><span class="kicker" data-i18n="lo.k">Location</span><h2 class="reveal" data-i18n-html="lo.h">Find us in <span class="script">Ghaziabad</span></h2></div>
     <div class="mapbox" id="mapbox">
       <iframe title="Panchwati Party Lawn on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=28.652288,77.377687&z=17&output=embed"></iframe>
-      <div class="mapcta"><a class="btn" id="mapLink" href="#" target="_blank" rel="noopener" data-i18n="lo.dir">Get directions</a></div>
+      <div class="mapcta"><a class="btn" id="mapLink" href="https://maps.app.goo.gl/ACUW17NnURoBMpJe8" target="_blank" rel="noopener" data-i18n="lo.dir">Get directions</a></div>
     </div>
-    <p class="wrap mapaddr" id="mapAddr"></p>
+    <p class="wrap mapaddr" id="mapAddr">Panchwati Party Lawn, Shaheed Captain Manoj Pandey Marg, Kanawani Village, Indirapuram, Ghaziabad, Uttar Pradesh 201014</p>
   </section>
   <!-- ===== events collection (tabs) ===== -->
   <section class="chapter ivory evsec" id="events">
     <div class="wrap">
       <div class="chead"><span class="kicker" data-i18n="ev.k">Our events</span><h2 class="reveal" data-i18n-html="ev.h">Celebrations at <span class="script">Panchwati</span></h2><p class="reveal" data-i18n="ev.p">Choose a function to see how we set it up, then enquire for your date.</p></div>
-      <div class="evtabs" role="tablist" aria-label="Event types" id="evTabs"></div>
-      <div class="evpanel" role="tabpanel" id="evPanel" aria-live="polite"></div>
+      <div class="evtabs" role="tablist" aria-label="Event types" id="evTabs">
+        <button type="button" role="tab" id="tab-weddings" aria-controls="ev-weddings" aria-selected="true" tabindex="0"><b>Weddings</b><span>विवाह</span><small>3 photos</small></button>
+        <button type="button" role="tab" id="tab-receptions" aria-controls="ev-receptions" aria-selected="false" tabindex="-1"><b>Receptions</b><span>रिसेप्शन</span><small>3 photos</small></button>
+        <button type="button" role="tab" id="tab-engagements" aria-controls="ev-engagements" aria-selected="false" tabindex="-1"><b>Engagements</b><span>सगाई</span><small>3 photos</small></button>
+        <button type="button" role="tab" id="tab-haldi-mehendi" aria-controls="ev-haldi-mehendi" aria-selected="false" tabindex="-1"><b>Haldi &amp; Mehendi</b><span>हल्दी · मेहंदी</span><small>3 photos</small></button>
+        <button type="button" role="tab" id="tab-birthdays" aria-controls="ev-birthdays" aria-selected="false" tabindex="-1"><b>Birthdays</b><span>जन्मदिन</span><small>3 photos</small></button>
+        <button type="button" role="tab" id="tab-anniversaries" aria-controls="ev-anniversaries" aria-selected="false" tabindex="-1"><b>Anniversaries</b><span>सालगिरह</span><small>3 photos</small></button>
+        <button type="button" role="tab" id="tab-corporate" aria-controls="ev-corporate" aria-selected="false" tabindex="-1"><b>Corporate dinners</b><span>कॉर्पोरेट</span><small>3 photos</small></button>
+        <button type="button" role="tab" id="tab-family" aria-controls="ev-family" aria-selected="false" tabindex="-1"><b>Family parties</b><span>पारिवारिक</span><small>3 photos</small></button>
+      </div>
+      <div id="evPanels" aria-live="polite">
+        <div class="evpanel" role="tabpanel" id="ev-weddings" aria-labelledby="tab-weddings">
+          <div class="evhead"><div><span class="kicker">विवाह</span><h3>Weddings</h3><p>Baraat welcome at the lit gate, jaimala on the royal stage, pheras and dinner, all at one address.</p></div><a class="btn" href="#enquire">Enquire for this event</a></div>
+          <div class="evgrid"><figure><div class="ph"><img src="img/gate.webp" srcset="img/gate-640.webp 640w, img/gate-1024.webp 1024w, img/gate.webp 1200w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Weddings: Baraat entrance"></div><figcaption>Baraat entrance</figcaption></figure><figure><div class="ph"><img src="img/stage.webp" srcset="img/stage-640.webp 640w, img/stage.webp 960w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Weddings: Jaimala stage"></div><figcaption>Jaimala stage</figcaption></figure><figure><div class="ph"><img src="img/welcome.webp" srcset="img/welcome-640.webp 640w, img/welcome-1024.webp 1024w, img/welcome.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Weddings: Floral walkway"></div><figcaption>Floral walkway</figcaption></figure></div>
+        </div>
+        <div class="evpanel" role="tabpanel" id="ev-receptions" aria-labelledby="tab-receptions" hidden>
+          <div class="evhead"><div><span class="kicker">रिसेप्शन</span><h3>Receptions</h3><p>Guests arrive through the corridor, greet the couple on stage and dine on the lawn and in the hall.</p></div><a class="btn" href="#enquire">Enquire for this event</a></div>
+          <div class="evgrid"><figure><div class="ph"><img src="img/lawn.webp" srcset="img/lawn-640.webp 640w, img/lawn-1024.webp 1024w, img/lawn.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Receptions: Lawn reception"></div><figcaption>Lawn reception</figcaption></figure><figure><div class="ph"><img src="img/stage.webp" srcset="img/stage-640.webp 640w, img/stage.webp 960w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Receptions: Couple's stage"></div><figcaption>Couple's stage</figcaption></figure><figure><div class="ph"><img src="img/banquet.webp" srcset="img/banquet-640.webp 640w, img/banquet-1024.webp 1024w, img/banquet.webp 1500w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Receptions: Banquet dinner"></div><figcaption>Banquet dinner</figcaption></figure></div>
+        </div>
+        <div class="evpanel" role="tabpanel" id="ev-engagements" aria-labelledby="tab-engagements" hidden>
+          <div class="evhead"><div><span class="kicker">सगाई</span><h3>Engagements</h3><p>Ring ceremony on the stage, family photographs at the flower wall and lunch in the hall.</p></div><a class="btn" href="#enquire">Enquire for this event</a></div>
+          <div class="evgrid"><figure><div class="ph"><img src="img/stage.webp" srcset="img/stage-640.webp 640w, img/stage.webp 960w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Engagements: Ring ceremony stage"></div><figcaption>Ring ceremony stage</figcaption></figure><figure><div class="ph"><img src="img/booth.webp" srcset="img/booth-640.webp 640w, img/booth-1024.webp 1024w, img/booth.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Engagements: Family photo wall"></div><figcaption>Family photo wall</figcaption></figure><figure><div class="ph"><img src="img/corridor.webp" srcset="img/corridor-640.webp 640w, img/corridor-1024.webp 1024w, img/corridor.webp 1280w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Engagements: Guest walkway"></div><figcaption>Guest walkway</figcaption></figure></div>
+        </div>
+        <div class="evpanel" role="tabpanel" id="ev-haldi-mehendi" aria-labelledby="tab-haldi-mehendi" hidden>
+          <div class="evhead"><div><span class="kicker">हल्दी · मेहंदी</span><h3>Haldi &amp; Mehendi</h3><p>Bright daytime functions on the open lawn, with seating for the family and space for dhol.</p></div><a class="btn" href="#enquire">Enquire for this event</a></div>
+          <div class="evgrid"><figure><div class="ph"><img src="img/lawn.webp" srcset="img/lawn-640.webp 640w, img/lawn-1024.webp 1024w, img/lawn.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Haldi &amp; Mehendi: Open lawn"></div><figcaption>Open lawn</figcaption></figure><figure><div class="ph"><img src="img/booth.webp" srcset="img/booth-640.webp 640w, img/booth-1024.webp 1024w, img/booth.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Haldi &amp; Mehendi: Floral corner"></div><figcaption>Floral corner</figcaption></figure><figure><div class="ph"><img src="img/welcome.webp" srcset="img/welcome-640.webp 640w, img/welcome-1024.webp 1024w, img/welcome.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Haldi &amp; Mehendi: Entrance décor"></div><figcaption>Entrance décor</figcaption></figure></div>
+        </div>
+        <div class="evpanel" role="tabpanel" id="ev-birthdays" aria-labelledby="tab-birthdays" hidden>
+          <div class="evhead"><div><span class="kicker">जन्मदिन</span><h3>Birthdays</h3><p>From first birthdays to 60th celebrations, in the banquet hall or out on the lawn.</p></div><a class="btn" href="#enquire">Enquire for this event</a></div>
+          <div class="evgrid"><figure><div class="ph"><img src="img/banquet.webp" srcset="img/banquet-640.webp 640w, img/banquet-1024.webp 1024w, img/banquet.webp 1500w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Birthdays: Banquet hall"></div><figcaption>Banquet hall</figcaption></figure><figure><div class="ph"><img src="img/booth.webp" srcset="img/booth-640.webp 640w, img/booth-1024.webp 1024w, img/booth.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Birthdays: Photo booth"></div><figcaption>Photo booth</figcaption></figure><figure><div class="ph"><img src="img/lawn.webp" srcset="img/lawn-640.webp 640w, img/lawn-1024.webp 1024w, img/lawn.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Birthdays: Lawn party"></div><figcaption>Lawn party</figcaption></figure></div>
+        </div>
+        <div class="evpanel" role="tabpanel" id="ev-anniversaries" aria-labelledby="tab-anniversaries" hidden>
+          <div class="evhead"><div><span class="kicker">सालगिरह</span><h3>Anniversaries</h3><p>Silver and golden jubilees with a stage for the couple and dinner for the whole family.</p></div><a class="btn" href="#enquire">Enquire for this event</a></div>
+          <div class="evgrid"><figure><div class="ph"><img src="img/stage.webp" srcset="img/stage-640.webp 640w, img/stage.webp 960w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Anniversaries: Anniversary stage"></div><figcaption>Anniversary stage</figcaption></figure><figure><div class="ph"><img src="img/banquet.webp" srcset="img/banquet-640.webp 640w, img/banquet-1024.webp 1024w, img/banquet.webp 1500w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Anniversaries: Family dinner"></div><figcaption>Family dinner</figcaption></figure><figure><div class="ph"><img src="img/corridor.webp" srcset="img/corridor-640.webp 640w, img/corridor-1024.webp 1024w, img/corridor.webp 1280w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Anniversaries: Chandelier corridor"></div><figcaption>Chandelier corridor</figcaption></figure></div>
+        </div>
+        <div class="evpanel" role="tabpanel" id="ev-corporate" aria-labelledby="tab-corporate" hidden>
+          <div class="evhead"><div><span class="kicker">कॉर्पोरेट</span><h3>Corporate dinners</h3><p>Annual days, award nights and team dinners with buffet service and lounge seating.</p></div><a class="btn" href="#enquire">Enquire for this event</a></div>
+          <div class="evgrid"><figure><div class="ph"><img src="img/banquet.webp" srcset="img/banquet-640.webp 640w, img/banquet-1024.webp 1024w, img/banquet.webp 1500w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Corporate dinners: Dinner seating"></div><figcaption>Dinner seating</figcaption></figure><figure><div class="ph"><img src="img/lawn.webp" srcset="img/lawn-640.webp 640w, img/lawn-1024.webp 1024w, img/lawn.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Corporate dinners: Open-air evening"></div><figcaption>Open-air evening</figcaption></figure><figure><div class="ph"><img src="img/gate.webp" srcset="img/gate-640.webp 640w, img/gate-1024.webp 1024w, img/gate.webp 1200w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Corporate dinners: Arrival"></div><figcaption>Arrival</figcaption></figure></div>
+        </div>
+        <div class="evpanel" role="tabpanel" id="ev-family" aria-labelledby="tab-family" hidden>
+          <div class="evhead"><div><span class="kicker">पारिवारिक</span><h3>Family parties</h3><p>Smaller get-togethers, kitty parties and pooja functions in the hall.</p></div><a class="btn" href="#enquire">Enquire for this event</a></div>
+          <div class="evgrid"><figure><div class="ph"><img src="img/banquet.webp" srcset="img/banquet-640.webp 640w, img/banquet-1024.webp 1024w, img/banquet.webp 1500w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Family parties: Banquet hall"></div><figcaption>Banquet hall</figcaption></figure><figure><div class="ph"><img src="img/corridor.webp" srcset="img/corridor-640.webp 640w, img/corridor-1024.webp 1024w, img/corridor.webp 1280w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Family parties: Lounge sofas"></div><figcaption>Lounge sofas</figcaption></figure><figure><div class="ph"><img src="img/booth.webp" srcset="img/booth-640.webp 640w, img/booth-1024.webp 1024w, img/booth.webp 1080w" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px" width="800" height="1000" loading="lazy" decoding="async" alt="Family parties: Photo corner"></div><figcaption>Photo corner</figcaption></figure></div>
+        </div>
+      </div>
     </div>
   </section>
   <!-- ===== FAQ ===== -->
   <section class="chapter dark faqsec" id="faq">
     <div class="wrap">
       <div class="chead"><span class="kicker" data-i18n="faq.k">Good to know</span><h2 class="reveal" data-i18n-html="faq.h">Questions &amp; <span class="script">answers</span></h2></div>
-      <div class="faq" id="faqList"></div>
+      <div class="faq" id="faqList">
+        <details><summary>How do I confirm a date?</summary><p>A date is confirmed with an advance of 10% of the total amount. Until then it can only be kept on hold.</p></details>
+        <details><summary>What if I have to cancel?</summary><p>If a booking is cancelled, 50% of the advance is retained and the rest is returned.</p></details>
+        <details><summary>Until what time can music play?</summary><p>Music and DJ run until 10 pm, in line with local rules.</p></details>
+        <details><summary>How many guests can you host?</summary><p>The open lawn takes 200 – 1000 guests and the banquet hall up to 1000. There is parking for about 500 cars.</p></details>
+        <details><summary>Can I see the venue before booking?</summary><p>Yes. WhatsApp or call us and we will fix a time for a site visit.</p></details>
+        <details><summary>What does it cost?</summary><p>Every function is priced on its date, guest count, menu and décor. Send an enquiry and we reply with a quote.</p></details>
+      </div>
     </div>
   </section>
 </main>
@@ -484,15 +535,15 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
   <div class="wrap">
     <div class="fgrid">
       <span class="emb"></span>
-      <div class="fcol"><span class="lbl" data-i18n="ft.k">The residence of celebrations</span><span class="addr">Indirapuram · Ghaziabad</span><span id="addr"></span><a id="phoneTxt" href="#"></a><span><span class="lbl" style="display:inline">WhatsApp</span> <span id="waNums"></span></span><div class="social" id="social"></div></div>
+      <div class="fcol"><span class="lbl" data-i18n="ft.k">The residence of celebrations</span><span class="addr">Indirapuram · Ghaziabad</span><span id="addr">Shaheed Captain Manoj Pandey Marg, Kanawani Village, Indirapuram, Ghaziabad, Uttar Pradesh 201014</span><a id="phoneTxt" href="tel:+919311142008">+91 93111 42008</a><span><span class="lbl" style="display:inline">WhatsApp</span> <span id="waNums">+91 81307 17313 · +91 92111 11976</span></span></div>
       <div class="fcol"><span class="lbl" data-i18n="ft.discover">Discover</span><a href="#story" data-i18n="ft.venue">The venue</a><a href="#spaces" data-i18n="ft.spaces">The spaces</a><a href="#feasts" data-i18n="ft.feasts">Feasts &amp; décor</a><a href="#events" data-i18n="ft.events">Events</a><a href="#faq" data-i18n="ft.faq">FAQ</a><a href="#location" data-i18n="ft.location">Location</a></div>
-      <div class="fcol"><span class="lbl" data-i18n="ft.reserve">Reserve</span><a href="#enquire" data-i18n="ft.check">Check a date</a><a href="#enquire" data-i18n="ft.visit">Book a site visit</a><a id="waFoot" href="#" target="_blank" rel="noopener" data-i18n="ft.wa">WhatsApp us</a></div>
+      <div class="fcol"><span class="lbl" data-i18n="ft.reserve">Reserve</span><a href="#enquire" data-i18n="ft.check">Check a date</a><a href="#enquire" data-i18n="ft.visit">Book a site visit</a><a id="waFoot" href="https://wa.me/918130717313?text=Namaste%20Panchwati%20Party%20Lawn%2C%20I'd%20like%20to%20know%20about%20availability%20for%20my%20function." target="_blank" rel="noopener" data-i18n="ft.wa">WhatsApp us</a></div>
     </div>
     <div class="fbase"><span>© <span id="yr"></span> Panchwati Party Lawn · पंचवटी पार्टी लॉन</span><span data-i18n="ft.tag">Weddings · Receptions · Celebrations</span></div>
   </div>
 </footer>
 
-<a class="fab hide" id="fab" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<a class="fab hide" id="fab" href="https://wa.me/918130717313?text=Namaste%20Panchwati%20Party%20Lawn%2C%20I'd%20like%20to%20know%20about%20availability%20for%20my%20function." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2 .7 2.8.6.4-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2Z"/></svg>
 </a>
 
@@ -547,10 +598,12 @@ const phoneA = document.getElementById("phoneTxt"); phoneA.textContent = CONFIG.
 document.getElementById("waNums").textContent = [CONFIG.whatsapp, CONFIG.whatsappAlt].filter(Boolean).map(fmtWa).join(" · ");
 document.getElementById("yr").textContent = new Date().getFullYear();
 (function(){
-  const s = CONFIG.social, box = document.getElementById("social");
+  const s = CONFIG.social;
   const links = [["instagram", "Instagram"], ["facebook", "Facebook"], ["google", "Google reviews"]].filter(([k]) => s[k]);
-  if (!links.length) { box.hidden = true; return; }
+  if (!links.length) return;
+  const box = document.createElement("div"); box.className = "social";
   links.forEach(([k, label]) => { const a = document.createElement("a"); a.href = s[k]; a.target = "_blank"; a.rel = "noopener"; a.textContent = label; box.appendChild(a); });
+  document.getElementById("phoneTxt").parentElement.appendChild(box);
 })();
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* ===== text used from JS, English here, Hindi in data/hi.json ===== */
@@ -777,33 +830,29 @@ const EVENTS_DEFAULT = {categories: [
   {id:"family", name:"Family parties", hi:"पारिवारिक", form:"Other", about:"Smaller get-togethers, kitty parties and pooja functions in the hall.", photos:[{src:"img/banquet.webp",caption:"Banquet hall"},{src:"img/corridor.webp",caption:"Lounge sofas"},{src:"img/booth.webp",caption:"Photo corner"}]}
 ]};
 const SRCSET = {"banquet":"img/banquet-640.webp 640w, img/banquet-1024.webp 1024w, img/banquet.webp 1500w","booth":"img/booth-640.webp 640w, img/booth-1024.webp 1024w, img/booth.webp 1080w","corridor":"img/corridor-640.webp 640w, img/corridor-1024.webp 1024w, img/corridor.webp 1280w","gate":"img/gate-640.webp 640w, img/gate-1024.webp 1024w, img/gate.webp 1200w","lawn":"img/lawn-640.webp 640w, img/lawn-1024.webp 1024w, img/lawn.webp 1080w","stage":"img/stage-640.webp 640w, img/stage.webp 960w","welcome":"img/welcome-640.webp 640w, img/welcome-1024.webp 1024w, img/welcome.webp 1080w"};
-const evTabs = document.getElementById("evTabs"), evPanel = document.getElementById("evPanel");
+const evTabs = document.getElementById("evTabs"), evPanels = document.getElementById("evPanels");
 let EVENTS = EVENTS_DEFAULT.categories, EV_CUR = 0;
+// The tabs and panels are in the HTML already (so search engines read them); JS only switches, translates and swaps in photos from the admin list.
 function renderTabs(){
-  evTabs.innerHTML = "";
-  EVENTS.forEach((c, i) => {
-    const b = document.createElement("button");
-    b.type = "button"; b.setAttribute("role", "tab"); b.id = "tab-" + c.id;
-    b.setAttribute("aria-controls", "evPanel");
-    b.innerHTML = `<b></b><span></span><small></small>`;
+  [...evTabs.children].forEach((b, i) => {
+    const c = EVENTS[i]; if (!c) return;
     b.querySelector("b").textContent = LANG === "hi" ? c.hi : c.name; b.querySelector("span").textContent = LANG === "hi" ? c.name : c.hi;
     b.querySelector("small").textContent = t(c.photos.length === 1 ? "ev.photo" : "ev.photos", {n: c.photos.length});
     b.onclick = () => selectEvent(i, true);
     b.onkeydown = e => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); const n = (i + (e.key === "ArrowRight" ? 1 : -1) + EVENTS.length) % EVENTS.length; selectEvent(n, true); evTabs.children[n].focus(); } };
-    evTabs.appendChild(b);
   });
 }
 function selectEvent(i, animate){
   [...evTabs.children].forEach((b, j) => { b.setAttribute("aria-selected", i === j); b.tabIndex = i === j ? 0 : -1; });
   const c = EVENTS[i]; EV_CUR = i;
-  evPanel.setAttribute("aria-labelledby", "tab-" + c.id);
-  evPanel.innerHTML = `<div class="evhead"><div><span class="kicker"></span><h3></h3><p></p></div><a class="btn" href="#enquire"></a></div><div class="evgrid"></div>`;
-  evPanel.querySelector(".kicker").textContent = LANG === "hi" ? c.name : c.hi;
-  evPanel.querySelector("h3").textContent = LANG === "hi" ? c.hi : c.name;
-  evPanel.querySelector("p").textContent = (LANG === "hi" && c.aboutHi) || c.about;
-  evPanel.querySelector(".btn").textContent = t("ev.btn");
-  evPanel.querySelector(".btn").onclick = () => { const sel = document.getElementById("f-type"); [...sel.options].forEach(o => { if (o.text === c.form) sel.value = o.value; }); };
-  const grid = evPanel.querySelector(".evgrid");
+  [...evPanels.children].forEach((p, j) => { p.hidden = i !== j; });
+  const panel = evPanels.children[i];
+  panel.querySelector(".kicker").textContent = LANG === "hi" ? c.name : c.hi;
+  panel.querySelector("h3").textContent = LANG === "hi" ? c.hi : c.name;
+  panel.querySelector(".evhead p").textContent = (LANG === "hi" && c.aboutHi) || c.about;
+  panel.querySelector(".btn").textContent = t("ev.btn");
+  panel.querySelector(".btn").onclick = () => { const sel = document.getElementById("f-type"); [...sel.options].forEach(o => { if (o.text === c.form) sel.value = o.value; }); };
+  const grid = panel.querySelector(".evgrid"); grid.innerHTML = "";
   c.photos.forEach(ph => {
     const f = document.createElement("figure");
     f.innerHTML = `<div class="ph"><img loading="lazy" decoding="async" width="800" height="1000" sizes="(max-width:420px) 100vw, (max-width:760px) 50vw, 380px"></div><figcaption></figcaption>`;
@@ -813,13 +862,14 @@ function selectEvent(i, animate){
     f.querySelector("figcaption").textContent = cap;
     grid.appendChild(f);
   });
-  if (animate) { evPanel.classList.remove("swap"); void evPanel.offsetWidth; evPanel.classList.add("swap"); }
+  if (animate) { panel.classList.remove("swap"); void panel.offsetWidth; panel.classList.add("swap"); }
 }
 renderTabs(); selectEvent(0, false);
 fetch("api/events", {cache: "no-store"}).then(r => r.ok ? r.json() : null).then(j => { if (j && j.categories && j.categories.length) { EVENTS = j.categories; renderTabs(); selectEvent(EV_CUR, false); } }).catch(() => {});
 /* ===== FAQ + prices ===== */
 function renderFaq(){
   const box = document.getElementById("faqList"); box.innerHTML = "";
+  document.getElementById("faq").hidden = !CONFIG.faq.length;   // no answers yet → no empty heading
   const fill = s => s.replace("{lawn}", CONFIG.capacity.lawn).replace("{hall}", CONFIG.capacity.hall).replace("{parking}", CONFIG.capacity.parking);
   CONFIG.faq.forEach(f => {
     const q = LANG === "hi" && f.hi ? f.hi.q : f.q, a = LANG === "hi" && f.hi ? f.hi.a : f.a;
@@ -829,6 +879,7 @@ function renderFaq(){
   });
   let ld = document.getElementById("faqLd");
   if (!ld) { ld = document.createElement("script"); ld.type = "application/ld+json"; ld.id = "faqLd"; document.head.appendChild(ld); }
+  if (!CONFIG.faq.length) { ld.remove(); return; }
   ld.textContent = JSON.stringify({"@context": "https://schema.org", "@type": "FAQPage", mainEntity: CONFIG.faq.map(f => ({"@type": "Question", name: f.q, acceptedAnswer: {"@type": "Answer", text: fill(f.a)}}))});
 }
 function renderPrices(){
