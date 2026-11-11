@@ -11,7 +11,7 @@
 <meta property="og:description" content="Weddings, receptions and celebrations. Check available dates and enquire online.">
 <meta property="og:image" content="img/gate-og.jpg">
 <meta name="theme-color" content="#0f1120">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"EventVenue","name":"Panchwati Party Lawn","alternateName":"पंचवटी पार्टी लॉन","address":{"@type":"PostalAddress","addressLocality":"Ghaziabad","addressRegion":"Uttar Pradesh","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":28.652288,"longitude":77.377687},"hasMap":"https://maps.app.goo.gl/ACUW17NnURoBMpJe8"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EventVenue","name":"Panchwati Party Lawn","alternateName":"पंचवटी पार्टी लॉन","url":"https://panchwati-party-lawn.vercel.app/","telephone":"+919311142008","address":{"@type":"PostalAddress","streetAddress":"Shaheed Captain Manoj Pandey Marg, Kanawani Village, Indirapuram","addressLocality":"Ghaziabad","addressRegion":"Uttar Pradesh","postalCode":"201014","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":28.652288,"longitude":77.377687},"hasMap":"https://maps.app.goo.gl/ACUW17NnURoBMpJe8","maximumAttendeeCapacity":1000}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Pinyon+Script&family=Jost:wght@300;400;500&family=Tiro+Devanagari+Hindi&display=swap">
@@ -232,14 +232,9 @@ p{margin:0}
 /* ---------- map ---------- */
 .mapsec{padding-block:clamp(100px,12vw,150px) 0}
 .mapbox{position:relative;margin-top:10px;border-top:1px solid #d9cdb4;border-bottom:1px solid #d9cdb4;overflow:hidden;background:#efe7d6}
-.mapbox svg{display:block;width:100%;height:auto;min-height:340px}
-.pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);display:grid;justify-items:center;gap:6px;text-align:center}
-.pin svg{width:34px;height:auto;min-height:0;filter:drop-shadow(0 6px 8px rgba(80,20,20,.35));animation:bob 2.4s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-6px)}}
-.pin span{background:var(--ivory);border:1px solid #c8b791;padding:6px 14px;font-family:var(--f-display);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
 .mapcta{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:calc(100% - 32px)}
 .mapcta .btn{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
-.mapnote{position:absolute;right:12px;top:10px;font-size:11px;color:var(--ink-soft);letter-spacing:.1em}
+.mapaddr{text-align:center;padding-block:28px 60px;color:var(--ink-soft);font-size:15px}
 
 /* ---------- footer ---------- */
 footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + env(safe-area-inset-bottom,0px))}
@@ -249,6 +244,9 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
 .fcol{display:grid;gap:10px;font-size:14px;color:var(--cream-dim)}
 .fcol a{text-decoration:none}.fcol a:hover{color:var(--gold-2)}
 .fcol .lbl{color:var(--gold);margin-bottom:6px}
+.fcol #phoneTxt{font-size:18px;color:var(--cream-txt)}
+.social{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px}
+.social a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
 .fbase{margin-top:60px;padding-top:22px;border-top:1px solid color-mix(in srgb,var(--gold) 20%,transparent);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:12px;color:var(--cream-dim);letter-spacing:.06em}
 @media (max-width:860px){.fgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:480px){.fgrid{grid-template-columns:1fr}}
@@ -324,8 +322,9 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2z" fill="currentColor"/></svg></div>
         <p class="reveal">From the lit floral gate to the chandelier corridor, the rose-wall stage and the open lawn under the stars, Panchwati is built for Indian celebrations. Your baraat, jaimala, dinner and dance all happen in one place, and your guests never have to move venues.</p>
         <div class="facts reveal">
-          <div><b>Open lawn</b><span>Under the sky</span></div>
-          <div><b>Banquet hall</b><span>Indoor dining</span></div>
+          <div><b id="capLawn"></b><span>Guests on the open lawn</span></div>
+          <div><b id="capHall"></b><span>Guests in the banquet hall</span></div>
+          <div><b id="capPark"></b><span>Cars parked on site</span></div>
           <div><b>Royal stage</b><span>Jaimala &amp; reception</span></div>
         </div>
       </div>
@@ -401,14 +400,10 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
   <section class="ivory mapsec" id="location">
     <div class="wrap chead" style="margin-bottom:40px"><span class="kicker">Location</span><h2 class="reveal">Find us in <span class="script">Ghaziabad</span></h2></div>
     <div class="mapbox" id="mapbox">
-      <svg viewBox="0 0 1400 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true" id="mapSvg"></svg>
-      <span class="mapnote">Illustration</span>
-      <div class="pin">
-        <svg viewBox="0 0 32 44"><path d="M16 0C7.2 0 0 7 0 15.7 0 27.5 16 44 16 44s16-16.5 16-28.3C32 7 24.8 0 16 0z" fill="#b3262f"/><circle cx="16" cy="15.5" r="6" fill="#f6f1e5"/></svg>
-        <span>Panchwati</span>
-      </div>
+      <iframe title="Panchwati Party Lawn on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=28.652288,77.377687&z=17&output=embed"></iframe>
       <div class="mapcta"><a class="btn" id="mapLink" href="#" target="_blank" rel="noopener">Get directions</a></div>
     </div>
+    <p class="wrap mapaddr" id="mapAddr"></p>
   </section>
   <!-- ===== events collection (tabs) ===== -->
   <section class="chapter ivory evsec" id="events">
@@ -424,7 +419,7 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
   <div class="wrap">
     <div class="fgrid">
       <span class="emb"></span>
-      <div class="fcol"><span class="lbl">The residence of celebrations</span><span class="addr" id="addr"></span><span id="phoneTxt"></span></div>
+      <div class="fcol"><span class="lbl">The residence of celebrations</span><span class="addr" id="addr"></span><a id="phoneTxt" href="#"></a><span><span class="lbl" style="display:inline">WhatsApp</span> <span id="waNums"></span></span><div class="social" id="social"></div></div>
       <div class="fcol"><span class="lbl">Discover</span><a href="#story">The venue</a><a href="#spaces">The spaces</a><a href="#feasts">Feasts &amp; décor</a><a href="#events">Events</a><a href="#location">Location</a></div>
       <div class="fcol"><span class="lbl">Reserve</span><a href="#enquire">Check a date</a><a href="#enquire">Book a site visit</a><a id="waFoot" href="#" target="_blank" rel="noopener">WhatsApp us</a></div>
     </div>
@@ -439,21 +434,43 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
 <script>
 /* ===== Edit these details ===== */
 const CONFIG = {
-  whatsapp: "",            // e.g. "919876543210" (country code + number, no +)
-  phoneDisplay: "",        // e.g. "+91 98765 43210"
-  address: "Ghaziabad, Uttar Pradesh",
+  siteUrl: "https://panchwati-party-lawn.vercel.app",
+  whatsapp: "918130717313",              // main WhatsApp (country code + number, no +)
+  whatsappAlt: "919211111976",           // second WhatsApp number, shown in the footer
+  phoneDisplay: "+91 93111 42008",       // number people see
+  phoneTel: "+919311142008",             // number the "call" link dials
+  address: "Shaheed Captain Manoj Pandey Marg, Kanawani Village, Indirapuram, Ghaziabad, Uttar Pradesh 201014",
   mapsUrl: "https://maps.app.goo.gl/ACUW17NnURoBMpJe8",
-  lat: 28.652288, lng: 77.377687
+  lat: 28.652288, lng: 77.377687,
+  capacity: { lawn: "200 – 1000", hall: "1000", parking: "500" },   // guests, guests, cars
+  /* Prices: set show:true and fill the numbers to display "starting from" prices.
+     Leave show:false to keep only the "Get a quote" button. */
+  prices: {
+    show: false,
+    rent: "",            // e.g. "₹1,50,000"   (venue rent, starting from)
+    vegPlate: "",        // e.g. "₹850"        (per plate, veg)
+    nonVegPlate: "",     // e.g. "₹1,100"      (per plate, non-veg)
+    decor: []            // e.g. [{ name: "Classic floral", price: "₹60,000" }]
+  },
+  /* Social links: leave empty to hide. */
+  social: { instagram: "", facebook: "", google: "" }
 };
-let LIVE = false;   // true once the site is running on Vercel with its booking API
-const waBase = CONFIG.whatsapp ? `https://wa.me/${CONFIG.whatsapp}` : "https://wa.me/";
+const fmtWa = n => "+" + n.replace(/^(\d{2})(\d{5})(\d{5})$/, "$1 $2 $3");
+const waBase = `https://wa.me/${CONFIG.whatsapp}`;
 const hello = waBase + "?text=" + encodeURIComponent("Namaste Panchwati Party Lawn, I'd like to know about availability for my function.");
 document.getElementById("fab").href = hello;
 document.getElementById("waFoot").href = hello;
 document.getElementById("mapLink").href = CONFIG.mapsUrl;
 document.getElementById("addr").textContent = CONFIG.address;
-document.getElementById("phoneTxt").textContent = CONFIG.phoneDisplay || "Call or WhatsApp to book a site visit";
+const phoneA = document.getElementById("phoneTxt"); phoneA.textContent = CONFIG.phoneDisplay; phoneA.href = "tel:" + CONFIG.phoneTel;
+document.getElementById("waNums").textContent = [CONFIG.whatsapp, CONFIG.whatsappAlt].filter(Boolean).map(fmtWa).join(" · ");
 document.getElementById("yr").textContent = new Date().getFullYear();
+(function(){
+  const s = CONFIG.social, box = document.getElementById("social");
+  const links = [["instagram", "Instagram"], ["facebook", "Facebook"], ["google", "Google reviews"]].filter(([k]) => s[k]);
+  if (!links.length) { box.hidden = true; return; }
+  links.forEach(([k, label]) => { const a = document.createElement("a"); a.href = s[k]; a.target = "_blank"; a.rel = "noopener"; a.textContent = label; box.appendChild(a); });
+})();
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ===== Panchwati logo: five lotus petals (panch = five) under an arch, in a ring ===== */
@@ -542,22 +559,11 @@ if (!reduce && "IntersectionObserver" in window) {
   document.querySelectorAll(".reveal").forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("pre"); io.observe(el); } });
 }
 
-/* ===== illustrative map ===== */
-(function(){
-  const s = document.getElementById("mapSvg");
-  const road = (d, w, c) => `<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`;
-  let g = `<rect width="1400" height="520" fill="#efe7d6"/>`;
-  g += `<path d="M0 410 C 220 360, 420 470, 640 420 S 1040 330, 1400 380 L1400 520 L0 520Z" fill="#dfe3d4"/>`;
-  g += `<path d="M-20 440 C 200 395, 430 500, 650 450 S 1050 365, 1420 410" fill="none" stroke="#c9d6d6" stroke-width="18"/>`;
-  g += `<circle cx="300" cy="140" r="70" fill="#e3e6d2"/><circle cx="1120" cy="170" r="90" fill="#e3e6d2"/>`;
-  const minor = ["M0 120 H1400","M0 300 C 300 280, 500 330, 700 300 S 1100 250, 1400 290","M180 0 V520","M420 0 C 440 200, 400 360, 430 520","M980 0 C 960 180, 1010 330, 990 520","M1220 0 V520","M0 40 L600 230 L1400 60","M100 520 L700 260 L1300 520","M560 0 C 600 120, 520 200, 560 260"];
-  minor.forEach(d => g += road(d, 6, "#e6dcc6") + road(d, 1.2, "#cbbd9c"));
-  const major = ["M0 260 C 350 250, 520 270, 700 260 S 1100 230, 1400 240","M700 0 C 690 150, 710 300, 700 520"];
-  major.forEach(d => g += road(d, 14, "#e2d2ad") + road(d, 1.5, "#b9a477"));
-  g += `<circle cx="700" cy="260" r="46" fill="none" stroke="#b9a477" stroke-width="1.2" stroke-dasharray="3 5"/>`;
-  s.innerHTML = g;
-})();
-
+/* ===== capacity + address lines ===== */
+document.getElementById("capLawn").textContent = CONFIG.capacity.lawn;
+document.getElementById("capHall").textContent = CONFIG.capacity.hall;
+document.getElementById("capPark").textContent = CONFIG.capacity.parking;
+document.getElementById("mapAddr").textContent = "Panchwati Party Lawn, " + CONFIG.address;
 /* ===== calendar ===== */
 const calEl = document.getElementById("cal"), title = document.getElementById("calTitle"), dateIn = document.getElementById("f-date");
 const today = new Date(); today.setHours(0,0,0,0);
@@ -605,20 +611,11 @@ async function loadBookings(){
   try {
     const r = await fetch("api/bookings", {cache: "no-store"});
     if (!r.ok) throw new Error("no api");
-    const j = await r.json(); BOOK = j.dates || {}; LIVE = true;
+    const j = await r.json(); BOOK = j.dates || {};
   } catch {
-    try {
-      const r = await fetch("data/bookings.json", {cache: "no-store"});
-      const j = await r.json(); BOOK = j.dates || {};
-      if (j.sample) document.getElementById("calNote").textContent = "Preview: the marked dates are samples. Real bookings show here once the site is live.";
-    } catch {}
+    document.getElementById("calNote").textContent = "Live availability could not be loaded. Please WhatsApp us to check your date.";
   }
   drawCal();
-  if (LIVE) showRealMap();
-}
-function showRealMap(){
-  const box = document.getElementById("mapbox");
-  box.innerHTML = `<iframe title="Panchwati Party Lawn on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=${CONFIG.lat},${CONFIG.lng}&z=17&output=embed"></iframe><div class="mapcta"><a class="btn" href="${CONFIG.mapsUrl}" target="_blank" rel="noopener">Get directions</a></div>`;
 }
 document.getElementById("prevM").onclick = () => { view.setMonth(view.getMonth() - 1); drawCal(); };
 document.getElementById("nextM").onclick = () => { view.setMonth(view.getMonth() + 1); drawCal(); };
