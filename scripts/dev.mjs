@@ -4,6 +4,7 @@
 import http from "node:http";
 import { readFile, stat, writeFile, mkdir } from "node:fs/promises";
 import { createReadStream } from "node:fs";
+import { createGzip } from "node:zlib";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -79,7 +80,12 @@ async function serveStatic(req, res, p) {
     if (!path.extname(file)) file += ".html";               // cleanUrls: /admin → admin.html
   }
   try { await stat(file); } catch { res.statusCode = 404; return res.end("Not found"); }
-  res.setHeader("Content-Type", MIME[path.extname(file)] || "application/octet-stream");
+  const type = MIME[path.extname(file)] || "application/octet-stream";
+  res.setHeader("Content-Type", type);
+  if (/^(text|application\/(json|xml|javascript))/.test(type) && /gzip/.test(req.headers["accept-encoding"] || "")) {
+    res.setHeader("Content-Encoding", "gzip"); res.setHeader("Vary", "Accept-Encoding");
+    return createReadStream(file).pipe(createGzip()).pipe(res);   // Vercel compresses in production; mirror it here
+  }
   createReadStream(file).pipe(res);
 }
 await mkdir(UPLOAD_DIR, { recursive: true });

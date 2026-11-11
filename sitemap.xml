@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://panchwati-party-lawn.vercel.app/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image><image:loc>https://panchwati-party-lawn.vercel.app/img/gate.webp</image:loc><image:title>Panchwati Party Lawn entrance gate</image:title></image:image>
+    <image:image><image:loc>https://panchwati-party-lawn.vercel.app/img/lawn.webp</image:loc><image:title>Open lawn at Panchwati Party Lawn</image:title></image:image>
+    <image:image><image:loc>https://panchwati-party-lawn.vercel.app/img/stage.webp</image:loc><image:title>Royal stage at Panchwati Party Lawn</image:title></image:image>
+    <image:image><image:loc>https://panchwati-party-lawn.vercel.app/img/banquet.webp</image:loc><image:title>Banquet hall at Panchwati Party Lawn</image:title></image:image>
+  </url>
+</urlset>
