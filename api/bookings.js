@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     const all = await hgetallJson("bookings");
-    const admin = isAdmin(req);
+    const admin = await isAdmin(req);
     const dates = {};
     for (const [d, b] of Object.entries(all)) {
       // the public only sees status and slot, never the owner's private notes
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    if (!isAdmin(req)) return res.status(401).json({ error: "Wrong password" });
+    if (!(await isAdmin(req))) return res.status(401).json({ error: "Wrong password" });
     const { date, status, slot, note, name, phone } = req.body || {};
     if (!isDate(date)) return res.status(400).json({ error: "Date must look like 2026-12-05" });
     if (status === "available") {

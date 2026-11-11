@@ -2,5 +2,13 @@
   "name": "panchwati-party-lawn",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@vercel/blob": "^1.1.1"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs"
+  }
 }

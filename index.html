@@ -76,7 +76,21 @@ p{margin:0}
 .nav ul a{font-size:11px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;opacity:.8}
 .nav ul a:hover{opacity:1;color:var(--gold-2)}
 .nav .cta{font-size:11px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;border:1px solid color-mix(in srgb,var(--gold) 70%,transparent);padding:10px 16px;color:var(--gold-2);white-space:nowrap}
+.navr{display:flex;align-items:center;gap:10px}
+.lang{all:unset;box-sizing:border-box;cursor:pointer;font:400 14px/1 var(--f-hindi);color:var(--gold-2);border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);padding:9px 12px;white-space:nowrap}
+.lang:hover{border-color:var(--gold)}
+html[lang=hi] .lang{font:400 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase}
 @media (max-width:880px){.nav ul{display:none}}
+@media (max-width:520px){.brand .btxt{display:none}.nav .cta{padding:10px 12px;letter-spacing:.16em}}
+/* Hindi: Devanagari fonts, no fake small caps */
+html[lang=hi] body,html[lang=hi] .field input,html[lang=hi] .field select,html[lang=hi] .field textarea,html[lang=hi] .done pre{font-family:var(--f-hindi)}
+html[lang=hi] h1,html[lang=hi] h2,html[lang=hi] h3,html[lang=hi] .cal-h b,html[lang=hi] .facts b,html[lang=hi] .evgrid figcaption,html[lang=hi] .faq summary{font-family:var(--f-hindi);font-weight:400;font-style:normal}
+html[lang=hi] .script{font-family:var(--f-hindi);font-size:1em;line-height:1.15;padding:0}
+html[lang=hi] .story h2 .script{display:inline}
+html[lang=hi] .kicker,html[lang=hi] .nav ul a,html[lang=hi] .nav .cta,html[lang=hi] .btn,html[lang=hi] .field label,html[lang=hi] .lbl,html[lang=hi] .links,html[lang=hi] .facts span,html[lang=hi] .fbase,html[lang=hi] .cue,html[lang=hi] .title .sub,html[lang=hi] .evtabs button small,html[lang=hi] .cal .dow,html[lang=hi] .prices span,html[lang=hi] .social a{letter-spacing:.04em;text-transform:none;font-size:14px}
+html[lang=hi] .nav .cta,html[lang=hi] .btn{font-size:15px;font-family:var(--f-hindi)}
+html[lang=hi] .num{font-style:normal}
+html[lang=hi] .evtabs button span{font-family:var(--f-display);font-size:14px;letter-spacing:.1em;text-transform:uppercase}
 
 /* ---------- hero walk ---------- */
 .walk{position:relative;height:420vh}
@@ -144,6 +158,24 @@ p{margin:0}
 .links i{width:46px;height:1px;background:currentColor;opacity:.4}
 @media (max-width:760px){.card,.card:nth-child(even){grid-template-columns:1fr}.card:nth-child(even) .pic{order:0}.card:nth-child(even) .txt{text-align:left;justify-items:start}}
 .reveal{transition:opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1)}
+/* quote strip + optional prices */
+.quote{margin-top:clamp(70px,10vw,120px);border:1px solid #d9cdb4;padding:clamp(28px,4vw,48px);display:grid;gap:18px;justify-items:center;text-align:center}
+.quote p{color:var(--ink-soft);max-width:56ch}
+.quote .btn{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
+.prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px 24px;width:100%;margin:6px 0 10px}
+.prices div{display:grid;gap:4px}
+.prices b{font-family:var(--f-display);font-weight:400;font-size:30px;color:var(--ink)}
+.prices span{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
+/* FAQ */
+.faqsec{background:linear-gradient(180deg,var(--night-2),var(--night))}
+.faq{max-width:780px;margin:0 auto;border-top:1px solid color-mix(in srgb,var(--gold) 30%,transparent)}
+.faq details{border-bottom:1px solid color-mix(in srgb,var(--gold) 30%,transparent)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:22px 0;font-family:var(--f-display);font-size:clamp(21px,2.4vw,27px);color:var(--cream-txt)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:0 0 auto;font:300 28px/1 var(--f-body);color:var(--gold);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{color:var(--cream-dim);padding:0 40px 24px 0;max-width:62ch}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .reveal.pre{opacity:0;transform:translateY(50px)}
 
 /* ---------- events collection ---------- */
@@ -279,15 +311,16 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Panchwati Party Lawn, back to top"><span class="emb"></span>Panchwati</a>
+    <a class="brand" href="#top" aria-label="Panchwati Party Lawn, back to top"><span class="emb"></span><span class="btxt">Panchwati</span></a>
     <ul>
-      <li><a href="#story">The Venue</a></li>
-      <li><a href="#spaces">Spaces</a></li>
-      <li><a href="#feasts">Feasts</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#location">Location</a></li>
+      <li><a href="#story" data-i18n="nav.venue">The Venue</a></li>
+      <li><a href="#spaces" data-i18n="nav.spaces">Spaces</a></li>
+      <li><a href="#feasts" data-i18n="nav.feasts">Feasts</a></li>
+      <li><a href="#events" data-i18n="nav.events">Events</a></li>
+      <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="#location" data-i18n="nav.location">Location</a></li>
     </ul>
-    <a class="cta" href="#enquire">Reserve a date</a>
+    <div class="navr"><button class="lang" id="langBtn" type="button" lang="hi" aria-label="हिंदी में देखें">हिंदी</button><a class="cta" href="#enquire" data-i18n="nav.cta">Reserve a date</a></div>
   </div>
 </header>
 
@@ -303,12 +336,12 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
       <div class="title" id="t1"><div class="in">
         <span class="emb"></span>
         <h1>Panchwati</h1>
-        <span class="sub">Party Lawn &amp; Banquet</span>
+        <span class="sub" data-i18n="hero.sub">Party Lawn &amp; Banquet</span>
         <span class="hi">पंचवटी पार्टी लॉन</span>
       </div></div>
-      <div class="line2" id="t2"><div class="in"><span class="kicker">Step inside</span><h2>Where every celebration<br>finds its home</h2></div></div>
-      <div class="line2" id="t3"><div class="in"><span class="kicker">The royal stage</span><h2>Your moment, <span class="script">beautifully set</span></h2></div></div>
-      <div class="cue" id="cue"><i></i>Scroll to enter</div>
+      <div class="line2" id="t2"><div class="in"><span class="kicker" data-i18n="hero.k2">Step inside</span><h2 data-i18n-html="hero.h2">Where every celebration<br>finds its home</h2></div></div>
+      <div class="line2" id="t3"><div class="in"><span class="kicker" data-i18n="hero.k3">The royal stage</span><h2 data-i18n-html="hero.h3">Your moment, <span class="script">beautifully set</span></h2></div></div>
+      <div class="cue" id="cue"><i></i><span data-i18n="hero.cue">Scroll to enter</span></div>
     </div>
   </section>
 
@@ -317,15 +350,15 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
     <div class="story">
       <div class="bg" aria-hidden="true"></div>
       <div class="wrap">
-        <span class="kicker">Welcome to Panchwati</span>
-        <h2 class="reveal">Where every function feels <span class="script">truly royal.</span></h2>
+        <span class="kicker" data-i18n="story.k">Welcome to Panchwati</span>
+        <h2 class="reveal" data-i18n-html="story.h">Where every function feels <span class="script">truly royal.</span></h2>
         <div class="orn" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1l2.2 6.8L19 10l-6.8 2.2L10 19l-2.2-6.8L1 10l6.8-2.2z" fill="currentColor"/></svg></div>
-        <p class="reveal">From the lit floral gate to the chandelier corridor, the rose-wall stage and the open lawn under the stars, Panchwati is built for Indian celebrations. Your baraat, jaimala, dinner and dance all happen in one place, and your guests never have to move venues.</p>
+        <p class="reveal" data-i18n="story.p">From the lit floral gate to the chandelier corridor, the rose-wall stage and the open lawn under the stars, Panchwati is built for Indian celebrations. Your baraat, jaimala, dinner and dance all happen in one place, and your guests never have to move venues.</p>
         <div class="facts reveal">
-          <div><b id="capLawn"></b><span>Guests on the open lawn</span></div>
-          <div><b id="capHall"></b><span>Guests in the banquet hall</span></div>
-          <div><b id="capPark"></b><span>Cars parked on site</span></div>
-          <div><b>Royal stage</b><span>Jaimala &amp; reception</span></div>
+          <div><b id="capLawn"></b><span data-i18n="fact.lawn">Guests on the open lawn</span></div>
+          <div><b id="capHall"></b><span data-i18n="fact.hall">Guests in the banquet hall</span></div>
+          <div><b id="capPark"></b><span data-i18n="fact.park">Cars parked on site</span></div>
+          <div><b data-i18n="fact.stage">Royal stage</b><span data-i18n="fact.stage2">Jaimala &amp; reception</span></div>
         </div>
       </div>
     </div>
@@ -334,13 +367,13 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
   <!-- ===== the spaces (dark) ===== -->
   <section class="chapter dark" id="spaces">
     <div class="wrap">
-      <div class="chead"><span class="kicker">The spaces</span><h2 class="reveal">The <span class="script">Collection</span></h2><p class="reveal">Five settings, one address. Use them together for a wedding, or one at a time for a smaller gathering.</p></div>
+      <div class="chead"><span class="kicker" data-i18n="sp.k">The spaces</span><h2 class="reveal" data-i18n-html="sp.h">The <span class="script">Collection</span></h2><p class="reveal" data-i18n="sp.p">Five settings, one address. Use them together for a wedding, or one at a time for a smaller gathering.</p></div>
       <div class="cards">
-        <article class="card reveal"><div class="pic"><img src="img/lawn.webp" alt="Open lawn with golden floral arches" loading="lazy"></div><div class="txt"><span class="num">01</span><h3>The Open Lawn</h3><p>Green turf under the open sky with golden floral arches, lounge sofas and live food counters. Made for receptions, sangeet nights and large gatherings.</p><div class="links"><a href="#enquire">Enquire</a><i></i><a href="#enquire">Check date</a></div></div></article>
-        <article class="card reveal"><div class="pic"><img src="img/stage.webp" alt="Royal stage with rose wall" loading="lazy"></div><div class="txt"><span class="num">02</span><h3>The Royal Stage</h3><p>Wide steps, carved columns, a rose-wall backdrop and a crystal chandelier above gold-framed seating for the couple.</p><div class="links"><a href="#enquire">Enquire</a><i></i><a href="#enquire">Check date</a></div></div></article>
-        <article class="card reveal"><div class="pic"><img src="img/banquet.webp" alt="Banquet hall" loading="lazy"></div><div class="txt"><span class="num">03</span><h3>The Banquet Hall</h3><p>An indoor hall with chandeliers, coloured ceiling light, velvet dining chairs and sofa lounges. Comfortable in every season.</p><div class="links"><a href="#enquire">Enquire</a><i></i><a href="#enquire">Check date</a></div></div></article>
-        <article class="card reveal"><div class="pic"><img src="img/corridor.webp" alt="Chandelier corridor" loading="lazy"></div><div class="txt"><span class="num">04</span><h3>The Grand Corridor</h3><p>Carved ivory walls with glowing niches and a chain of chandeliers. The walk your guests remember on the way in.</p><div class="links"><a href="#enquire">Enquire</a><i></i><a href="#enquire">Check date</a></div></div></article>
-        <article class="card reveal"><div class="pic"><img src="img/welcome.webp" alt="Floral welcome entrance" loading="lazy"></div><div class="txt"><span class="num">05</span><h3>The Floral Entrance</h3><p>Hanging blooms, carved pillars and the patterned carpet that leads straight from the gate to the celebration.</p><div class="links"><a href="#enquire">Enquire</a><i></i><a href="#enquire">Check date</a></div></div></article>
+        <article class="card reveal"><div class="pic"><img src="img/lawn.webp" alt="Open lawn with golden floral arches" loading="lazy"></div><div class="txt"><span class="num">01</span><h3 data-i18n="sp.h1">The Open Lawn</h3><p data-i18n="sp.p1">Green turf under the open sky with golden floral arches, lounge sofas and live food counters. Made for receptions, sangeet nights and large gatherings.</p><div class="links"><a href="#enquire" data-i18n="sp.enq">Enquire</a><i></i><a href="#enquire" data-i18n="sp.check">Check date</a></div></div></article>
+        <article class="card reveal"><div class="pic"><img src="img/stage.webp" alt="Royal stage with rose wall" loading="lazy"></div><div class="txt"><span class="num">02</span><h3 data-i18n="sp.h2">The Royal Stage</h3><p data-i18n="sp.p2">Wide steps, carved columns, a rose-wall backdrop and a crystal chandelier above gold-framed seating for the couple.</p><div class="links"><a href="#enquire" data-i18n="sp.enq">Enquire</a><i></i><a href="#enquire" data-i18n="sp.check">Check date</a></div></div></article>
+        <article class="card reveal"><div class="pic"><img src="img/banquet.webp" alt="Banquet hall" loading="lazy"></div><div class="txt"><span class="num">03</span><h3 data-i18n="sp.h3">The Banquet Hall</h3><p data-i18n="sp.p3">An indoor hall with chandeliers, coloured ceiling light, velvet dining chairs and sofa lounges. Comfortable in every season.</p><div class="links"><a href="#enquire" data-i18n="sp.enq">Enquire</a><i></i><a href="#enquire" data-i18n="sp.check">Check date</a></div></div></article>
+        <article class="card reveal"><div class="pic"><img src="img/corridor.webp" alt="Chandelier corridor" loading="lazy"></div><div class="txt"><span class="num">04</span><h3 data-i18n="sp.h4">The Grand Corridor</h3><p data-i18n="sp.p4">Carved ivory walls with glowing niches and a chain of chandeliers. The walk your guests remember on the way in.</p><div class="links"><a href="#enquire" data-i18n="sp.enq">Enquire</a><i></i><a href="#enquire" data-i18n="sp.check">Check date</a></div></div></article>
+        <article class="card reveal"><div class="pic"><img src="img/welcome.webp" alt="Floral welcome entrance" loading="lazy"></div><div class="txt"><span class="num">05</span><h3 data-i18n="sp.h5">The Floral Entrance</h3><p data-i18n="sp.p5">Hanging blooms, carved pillars and the patterned carpet that leads straight from the gate to the celebration.</p><div class="links"><a href="#enquire" data-i18n="sp.enq">Enquire</a><i></i><a href="#enquire" data-i18n="sp.check">Check date</a></div></div></article>
       </div>
     </div>
   </section>
@@ -348,11 +381,17 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
   <!-- ===== feasts & decor (ivory) ===== -->
   <section class="chapter ivory" id="feasts">
     <div class="wrap">
-      <div class="chead"><span class="kicker">Dining &amp; décor</span><h2 class="reveal">Feasts &amp; <span class="script">Festivity</span></h2><p class="reveal">Long buffet lines indoors, live counters on the lawn, and décor setups ready for your photographs.</p></div>
+      <div class="chead"><span class="kicker" data-i18n="fe.k">Dining &amp; décor</span><h2 class="reveal" data-i18n-html="fe.h">Feasts &amp; <span class="script">Festivity</span></h2><p class="reveal" data-i18n="fe.p">Long buffet lines indoors, live counters on the lawn, and décor setups ready for your photographs.</p></div>
       <div class="cards">
-        <article class="card reveal"><div class="pic"><img src="img/banquet.webp" alt="Buffet counters in the banquet hall" loading="lazy" style="object-position:20% 50%"></div><div class="txt"><span class="num">Indoor dining</span><h3>The Buffet Hall</h3><p>A long line of gold-panelled buffet counters with seating for families to dine together under the chandeliers.</p><div class="links"><a href="#enquire">Plan your menu</a></div></div></article>
-        <article class="card reveal"><div class="pic"><img src="img/lawn.webp" alt="Live counters on the lawn" loading="lazy" style="object-position:80% 50%"></div><div class="txt"><span class="num">Open-air dining</span><h3>Live Counters</h3><p>Chaat, tandoor and dessert counters set out on the lawn, so the evening flows between food and dance.</p><div class="links"><a href="#enquire">Plan your menu</a></div></div></article>
-        <article class="card reveal"><div class="pic"><img src="img/booth.webp" alt="Flower wall photo booth" loading="lazy"></div><div class="txt"><span class="num">Décor</span><h3>The Photo Booth</h3><p>A full flower wall with a golden tower and a petal rangoli at its feet. The first stop for every family photo.</p><div class="links"><a href="#enquire">Ask about décor</a></div></div></article>
+        <article class="card reveal"><div class="pic"><img src="img/banquet.webp" alt="Buffet counters in the banquet hall" loading="lazy" style="object-position:20% 50%"></div><div class="txt"><span class="num" data-i18n="fe.n1">Indoor dining</span><h3 data-i18n="fe.h1">The Buffet Hall</h3><p data-i18n="fe.p1">A long line of gold-panelled buffet counters with seating for families to dine together under the chandeliers.</p><div class="links"><a href="#enquire" data-i18n="fe.menu">Plan your menu</a></div></div></article>
+        <article class="card reveal"><div class="pic"><img src="img/lawn.webp" alt="Live counters on the lawn" loading="lazy" style="object-position:80% 50%"></div><div class="txt"><span class="num" data-i18n="fe.n2">Open-air dining</span><h3 data-i18n="fe.h2">Live Counters</h3><p data-i18n="fe.p2">Chaat, tandoor and dessert counters set out on the lawn, so the evening flows between food and dance.</p><div class="links"><a href="#enquire" data-i18n="fe.menu">Plan your menu</a></div></div></article>
+        <article class="card reveal"><div class="pic"><img src="img/booth.webp" alt="Flower wall photo booth" loading="lazy"></div><div class="txt"><span class="num" data-i18n="fe.n3">Décor</span><h3 data-i18n="fe.h3">The Photo Booth</h3><p data-i18n="fe.p3">A full flower wall with a golden tower and a petal rangoli at its feet. The first stop for every family photo.</p><div class="links"><a href="#enquire" data-i18n="fe.decor">Ask about décor</a></div></div></article>
+      </div>
+      <div class="quote reveal" id="quote">
+        <span class="kicker" data-i18n="q.k">Packages &amp; pricing</span>
+        <div class="prices" id="prices" hidden></div>
+        <p data-i18n="q.p">Every function is priced for its date, guest count, menu and décor. Tell us about yours and we reply with a quote, usually the same day.</p>
+        <a class="btn" href="#enquire" data-i18n="q.btn">Get a quote</a>
       </div>
     </div>
   </section>
@@ -360,36 +399,37 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
   <!-- ===== enquiry ===== -->
   <section class="enq" id="enquire">
     <div class="wrap">
-      <div class="chead"><span class="kicker">Reservations</span><h2 class="reveal">Reserve your <span class="script">date</span></h2><p class="reveal">Choose a date and tell us about your function. Your message opens in WhatsApp, and we reply with availability and a quote.</p></div>
+      <div class="chead"><span class="kicker" data-i18n="en.k">Reservations</span><h2 class="reveal" data-i18n-html="en.h">Reserve your <span class="script">date</span></h2><p class="reveal" data-i18n="en.p">Choose a date and tell us about your function. Your message opens in WhatsApp, and we reply with availability and a quote.</p></div>
       <div class="grid">
         <div class="panel">
           <div class="cal-h"><button class="ib" id="prevM" aria-label="Previous month">‹</button><b id="calTitle"></b><button class="ib" id="nextM" aria-label="Next month">›</button></div>
           <div class="cal" id="cal" role="grid" aria-label="Choose a date"></div>
-          <div class="legend" aria-hidden="true"><span><i></i>Available</span><span><i class="l-bk"></i>Booked</span><span><i class="l-half"></i>Day or evening booked</span><span><i class="l-tn"></i>On hold</span></div>
+          <div class="legend" aria-hidden="true"><span><i></i><b data-i18n="cal.avail">Available</b></span><span><i class="l-bk"></i><b data-i18n="cal.booked">Booked</b></span><span><i class="l-half"></i><b data-i18n="cal.half">Day or evening booked</b></span><span><i class="l-tn"></i><b data-i18n="cal.hold">On hold</b></span></div>
           <p class="calinfo" id="calInfo" role="status"></p>
-          <p class="note" id="calNote">Weekends are marked in gold. Wedding-season dates fill early.</p>
+          <p class="note" id="calNote" data-i18n="cal.note">Weekends are marked in gold. Wedding-season dates fill early.</p>
         </div>
         <div class="panel">
           <form id="form" class="form" novalidate>
-            <div class="field"><label for="f-name">Your name</label><input id="f-name" autocomplete="name" placeholder="Rahul Sharma"></div>
-            <div class="field"><label for="f-phone">Mobile</label><input id="f-phone" inputmode="tel" autocomplete="tel" placeholder="10-digit number"></div>
-            <div class="field"><label for="f-date">Event date</label><input id="f-date" type="date"></div>
-            <div class="field"><label for="f-type">Function</label><select id="f-type"><option>Wedding</option><option>Reception</option><option>Engagement / Sagai</option><option>Haldi / Mehendi</option><option>Birthday</option><option>Anniversary</option><option>Corporate event</option><option>Other</option></select></div>
-            <div class="field full"><span class="lbl">Time of day</span><div class="seg">
-              <label><input type="radio" name="slot" id="slot-day" value="Day"><span>Day</span></label>
-              <label><input type="radio" name="slot" id="slot-eve" value="Evening" checked><span>Evening</span></label>
-              <label><input type="radio" name="slot" id="slot-full" value="Full day"><span>Full day</span></label></div></div>
-            <div class="field"><label for="f-guests">Guests</label><select id="f-guests"><option>Up to 100</option><option>100 to 250</option><option selected>250 to 500</option><option>500 to 1000</option><option>More than 1000</option></select></div>
-            <div class="field"><label for="f-space">Space</label><select id="f-space"><option>Lawn + banquet hall</option><option>Open lawn only</option><option>Banquet hall only</option><option>Not sure yet</option></select></div>
-            <div class="field full"><label for="f-note">Anything else</label><textarea id="f-note" placeholder="Veg menu, floral stage décor, site visit on Sunday…"></textarea></div>
+            <div class="field"><label for="f-name" data-i18n="f.name">Your name</label><input id="f-name" autocomplete="name" placeholder="Rahul Sharma"></div>
+            <div class="field"><label for="f-phone" data-i18n="f.phone">Mobile</label><input id="f-phone" inputmode="tel" autocomplete="tel" placeholder="10-digit number" data-i18n-ph="f.phoneph"></div>
+            <div class="field"><label for="f-date" data-i18n="f.date">Event date</label><input id="f-date" type="date"></div>
+            <div class="field"><label for="f-type" data-i18n="f.type">Function</label><select id="f-type"><option value="Wedding" data-i18n="t.wedding">Wedding</option><option value="Reception" data-i18n="t.reception">Reception</option><option value="Engagement / Sagai" data-i18n="t.engagement">Engagement / Sagai</option><option value="Haldi / Mehendi" data-i18n="t.haldi">Haldi / Mehendi</option><option value="Birthday" data-i18n="t.birthday">Birthday</option><option value="Anniversary" data-i18n="t.anniv">Anniversary</option><option value="Corporate event" data-i18n="t.corp">Corporate event</option><option value="Other" data-i18n="t.other">Other</option></select></div>
+            <div class="field full"><span class="lbl" data-i18n="f.time">Time of day</span><div class="seg">
+              <label><input type="radio" name="slot" id="slot-day" value="Day"><span data-i18n="s.day">Day</span></label>
+              <label><input type="radio" name="slot" id="slot-eve" value="Evening" checked><span data-i18n="s.eve">Evening</span></label>
+              <label><input type="radio" name="slot" id="slot-full" value="Full day"><span data-i18n="s.full">Full day</span></label></div></div>
+            <div class="field"><label for="f-guests" data-i18n="f.guests">Guests</label><select id="f-guests"><option value="Up to 100" data-i18n="g.1">Up to 100</option><option value="100 to 250" data-i18n="g.2">100 to 250</option><option value="250 to 500" selected data-i18n="g.3">250 to 500</option><option value="500 to 1000" data-i18n="g.4">500 to 1000</option><option value="More than 1000" data-i18n="g.5">More than 1000</option></select></div>
+            <div class="field"><label for="f-space" data-i18n="f.space">Space</label><select id="f-space"><option value="Lawn + banquet hall" data-i18n="sp.1">Lawn + banquet hall</option><option value="Open lawn only" data-i18n="sp.2">Open lawn only</option><option value="Banquet hall only" data-i18n="sp.3">Banquet hall only</option><option value="Not sure yet" data-i18n="sp.4">Not sure yet</option></select></div>
+            <div class="field full"><label for="f-note" data-i18n="f.note">Anything else</label><textarea id="f-note" placeholder="Veg menu, floral stage décor, site visit on Sunday…" data-i18n-ph="f.noteph"></textarea></div>
+            <div class="field hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" tabindex="-1" autocomplete="off"></div>
             <p class="err full" id="err" role="alert"></p>
-            <div class="full"><button class="btn" type="submit">Prepare WhatsApp message</button></div>
+            <div class="full"><button class="btn" type="submit" data-i18n="f.btn">Prepare WhatsApp message</button></div>
           </form>
           <div class="done" id="done" hidden>
-            <span class="kicker">Your enquiry</span>
+            <span class="kicker" data-i18n="d.k">Your enquiry</span>
             <pre id="msg"></pre>
-            <div class="row"><a class="btn" id="waLink" href="#" target="_blank" rel="noopener">Open in WhatsApp</a><button class="btn ghost" id="copyBtn" type="button">Copy</button><button class="btn ghost" id="editBtn" type="button">Edit</button></div>
-            <p class="note" id="copyNote">WhatsApp opens with this message ready. Tap send there to reach us.</p>
+            <div class="row"><a class="btn" id="waLink" href="#" target="_blank" rel="noopener" data-i18n="d.open">Open in WhatsApp</a><button class="btn ghost" id="copyBtn" type="button" data-i18n="d.copy">Copy</button><button class="btn ghost" id="editBtn" type="button" data-i18n="d.edit">Edit</button></div>
+            <p class="note" id="copyNote" data-i18n="d.note">WhatsApp opens with this message ready. Tap send there to reach us.</p>
           </div>
         </div>
       </div>
@@ -398,19 +438,26 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
 
   <!-- ===== location ===== -->
   <section class="ivory mapsec" id="location">
-    <div class="wrap chead" style="margin-bottom:40px"><span class="kicker">Location</span><h2 class="reveal">Find us in <span class="script">Ghaziabad</span></h2></div>
+    <div class="wrap chead" style="margin-bottom:40px"><span class="kicker" data-i18n="lo.k">Location</span><h2 class="reveal" data-i18n-html="lo.h">Find us in <span class="script">Ghaziabad</span></h2></div>
     <div class="mapbox" id="mapbox">
       <iframe title="Panchwati Party Lawn on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=28.652288,77.377687&z=17&output=embed"></iframe>
-      <div class="mapcta"><a class="btn" id="mapLink" href="#" target="_blank" rel="noopener">Get directions</a></div>
+      <div class="mapcta"><a class="btn" id="mapLink" href="#" target="_blank" rel="noopener" data-i18n="lo.dir">Get directions</a></div>
     </div>
     <p class="wrap mapaddr" id="mapAddr"></p>
   </section>
   <!-- ===== events collection (tabs) ===== -->
   <section class="chapter ivory evsec" id="events">
     <div class="wrap">
-      <div class="chead"><span class="kicker">Our events</span><h2 class="reveal">Celebrations at <span class="script">Panchwati</span></h2><p class="reveal">Choose a function to see how we set it up, then enquire for your date.</p></div>
+      <div class="chead"><span class="kicker" data-i18n="ev.k">Our events</span><h2 class="reveal" data-i18n-html="ev.h">Celebrations at <span class="script">Panchwati</span></h2><p class="reveal" data-i18n="ev.p">Choose a function to see how we set it up, then enquire for your date.</p></div>
       <div class="evtabs" role="tablist" aria-label="Event types" id="evTabs"></div>
       <div class="evpanel" role="tabpanel" id="evPanel" aria-live="polite"></div>
+    </div>
+  </section>
+  <!-- ===== FAQ ===== -->
+  <section class="chapter dark faqsec" id="faq">
+    <div class="wrap">
+      <div class="chead"><span class="kicker" data-i18n="faq.k">Good to know</span><h2 class="reveal" data-i18n-html="faq.h">Questions &amp; <span class="script">answers</span></h2></div>
+      <div class="faq" id="faqList"></div>
     </div>
   </section>
 </main>
@@ -419,11 +466,11 @@ footer{background:var(--plum);padding-block:clamp(70px,9vw,110px) calc(30px + en
   <div class="wrap">
     <div class="fgrid">
       <span class="emb"></span>
-      <div class="fcol"><span class="lbl">The residence of celebrations</span><span class="addr" id="addr"></span><a id="phoneTxt" href="#"></a><span><span class="lbl" style="display:inline">WhatsApp</span> <span id="waNums"></span></span><div class="social" id="social"></div></div>
-      <div class="fcol"><span class="lbl">Discover</span><a href="#story">The venue</a><a href="#spaces">The spaces</a><a href="#feasts">Feasts &amp; décor</a><a href="#events">Events</a><a href="#location">Location</a></div>
-      <div class="fcol"><span class="lbl">Reserve</span><a href="#enquire">Check a date</a><a href="#enquire">Book a site visit</a><a id="waFoot" href="#" target="_blank" rel="noopener">WhatsApp us</a></div>
+      <div class="fcol"><span class="lbl" data-i18n="ft.k">The residence of celebrations</span><span class="addr">Indirapuram · Ghaziabad</span><span id="addr"></span><a id="phoneTxt" href="#"></a><span><span class="lbl" style="display:inline">WhatsApp</span> <span id="waNums"></span></span><div class="social" id="social"></div></div>
+      <div class="fcol"><span class="lbl" data-i18n="ft.discover">Discover</span><a href="#story" data-i18n="ft.venue">The venue</a><a href="#spaces" data-i18n="ft.spaces">The spaces</a><a href="#feasts" data-i18n="ft.feasts">Feasts &amp; décor</a><a href="#events" data-i18n="ft.events">Events</a><a href="#faq" data-i18n="ft.faq">FAQ</a><a href="#location" data-i18n="ft.location">Location</a></div>
+      <div class="fcol"><span class="lbl" data-i18n="ft.reserve">Reserve</span><a href="#enquire" data-i18n="ft.check">Check a date</a><a href="#enquire" data-i18n="ft.visit">Book a site visit</a><a id="waFoot" href="#" target="_blank" rel="noopener" data-i18n="ft.wa">WhatsApp us</a></div>
     </div>
-    <div class="fbase"><span>© <span id="yr"></span> Panchwati Party Lawn · पंचवटी पार्टी लॉन</span><span>Weddings · Receptions · Celebrations</span></div>
+    <div class="fbase"><span>© <span id="yr"></span> Panchwati Party Lawn · पंचवटी पार्टी लॉन</span><span data-i18n="ft.tag">Weddings · Receptions · Celebrations</span></div>
   </div>
 </footer>
 
@@ -453,7 +500,23 @@ const CONFIG = {
     decor: []            // e.g. [{ name: "Classic floral", price: "₹60,000" }]
   },
   /* Social links: leave empty to hide. */
-  social: { instagram: "", facebook: "", google: "" }
+  social: { instagram: "", facebook: "", google: "" },
+  /* FAQ. Each item has English and Hindi. {lawn} {hall} {parking} are filled from capacity above.
+     Add more items in the same shape (e.g. outside caterers, décor, alcohol) when you have decided the policy. */
+  faq: [
+    { q: "How do I confirm a date?", a: "A date is confirmed with an advance of 10% of the total amount. Until then it can only be kept on hold.",
+      hi: { q: "तारीख़ कैसे पक्की होती है?", a: "कुल राशि का 10% एडवांस देने पर तारीख़ पक्की हो जाती है। उससे पहले उसे सिर्फ़ होल्ड पर रखा जा सकता है।" } },
+    { q: "What if I have to cancel?", a: "If a booking is cancelled, 50% of the advance is retained and the rest is returned.",
+      hi: { q: "अगर मुझे कैंसिल करना पड़े?", a: "बुकिंग कैंसिल करने पर एडवांस का 50% रखा जाता है और बाक़ी लौटा दिया जाता है।" } },
+    { q: "Until what time can music play?", a: "Music and DJ run until 10 pm, in line with local rules.",
+      hi: { q: "म्यूज़िक कितने बजे तक चल सकता है?", a: "स्थानीय नियमों के अनुसार म्यूज़िक और DJ रात 10 बजे तक चलते हैं।" } },
+    { q: "How many guests can you host?", a: "The open lawn takes {lawn} guests and the banquet hall up to {hall}. There is parking for about {parking} cars.",
+      hi: { q: "कितने मेहमान आ सकते हैं?", a: "खुले लॉन में {lawn} मेहमान और बैंक्वेट हॉल में {hall} तक। लगभग {parking} गाड़ियों की पार्किंग है।" } },
+    { q: "Can I see the venue before booking?", a: "Yes. WhatsApp or call us and we will fix a time for a site visit.",
+      hi: { q: "क्या बुकिंग से पहले वेन्यू देख सकते हैं?", a: "हाँ। WhatsApp या कॉल करें, हम साइट विज़िट का समय तय कर देंगे।" } },
+    { q: "What does it cost?", a: "Every function is priced on its date, guest count, menu and décor. Send an enquiry and we reply with a quote.",
+      hi: { q: "खर्च कितना आता है?", a: "हर फ़ंक्शन की क़ीमत तारीख़, मेहमानों की संख्या, मेन्यू और सजावट पर तय होती है। पूछताछ भेजें, हम कोटेशन के साथ जवाब देंगे।" } }
+  ]
 };
 const fmtWa = n => "+" + n.replace(/^(\d{2})(\d{5})(\d{5})$/, "$1 $2 $3");
 const waBase = `https://wa.me/${CONFIG.whatsapp}`;
@@ -472,6 +535,34 @@ document.getElementById("yr").textContent = new Date().getFullYear();
   links.forEach(([k, label]) => { const a = document.createElement("a"); a.href = s[k]; a.target = "_blank"; a.rel = "noopener"; a.textContent = label; box.appendChild(a); });
 })();
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* ===== text used from JS, English here, Hindi in data/hi.json ===== */
+let LANG = "en";
+const LOC = () => LANG === "hi" ? "hi-IN" : "en-IN";
+const EN = {
+  "meta.title": "Panchwati Party Lawn | Party Lawn & Banquet Hall in Indirapuram, Ghaziabad",
+  "meta.desc": "Panchwati Party Lawn, Indirapuram, Ghaziabad: open lawn for 200 to 1000 guests, banquet hall, royal stage and parking for 500 cars. Weddings, receptions, engagements and parties. Check available dates and enquire online.",
+  "c.dow": "Mo,Tu,We,Th,Fr,Sa,Su", "w.day": "day", "w.eve": "evening",
+  "c.avail": "{d} is available. Fill in the form to enquire.",
+  "c.hold": "{d} is on hold for another family. Enquire and we'll tell you if it frees up.",
+  "c.half": "{d}: the {slot} is booked. The {other} may still be free.",
+  "c.full": "{d} is fully booked. Please choose another date.",
+  "c.offline": "Live availability could not be loaded. Please WhatsApp us to check your date.",
+  "cal.hold": "on hold", "cal.booked": "booked",
+  "e.name": "Please add your name.", "e.phone": "Please enter a 10-digit mobile number.", "e.date": "Please pick an event date from the calendar or the date box.",
+  "m.hello": "Namaste Panchwati Party Lawn,\n\nI'd like to check availability.",
+  "d.note": "WhatsApp opens with this message ready. Tap send there to reach us.",
+  "d.saved": "Your enquiry has reached Panchwati and we will call you back. For a faster reply, also send it on WhatsApp.",
+  "d.copied": "Message copied. Paste it into WhatsApp or SMS.", "d.selected": "Message selected. Copy it from your keyboard.",
+  "ev.photo": "{n} photo", "ev.photos": "{n} photos", "ev.btn": "Enquire for this event",
+  "pr.from": "from {v}", "pr.rent": "Venue rent", "pr.veg": "Per plate, veg", "pr.nonveg": "Per plate, non-veg",
+  "f.name": "Your name", "f.phone": "Mobile", "f.type": "Function", "f.date": "Event date", "f.guests": "Guests", "f.space": "Space", "f.note": "Note",
+  "s.day": "Day", "s.eve": "Evening", "s.full": "Full day"
+};
+function t(key, vars){
+  let s = (LANG === "hi" && HI_CACHE.hi && HI_CACHE.hi[key]) || EN[key] || key;
+  if (vars) for (const k in vars) s = s.split("{" + k + "}").join(vars[k]);
+  return s;
+}
 
 /* ===== Panchwati logo: five lotus petals (panch = five) under an arch, in a ring ===== */
 function emblem(){
@@ -572,16 +663,16 @@ const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-$
 dateIn.min = iso(today);
 let BOOK = {};
 const calInfo = document.getElementById("calInfo");
-const fmt = dt => dt.toLocaleDateString("en-IN", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+const fmt = dt => dt.toLocaleDateString(LOC(), {weekday:"long", day:"numeric", month:"long", year:"numeric"});
 function describe(d, bk){
-  if (!bk) return `${d} is available. Fill in the form to enquire.`;
-  if (bk.status === "tentative") return `${d} is on hold for another family. Enquire and we'll tell you if it frees up.`;
-  if (bk.slot && bk.slot !== "Full day") return `${d}: the ${bk.slot.toLowerCase()} is booked. The ${bk.slot === "Day" ? "evening" : "day"} may still be free.`;
-  return `${d} is fully booked. Please choose another date.`;
+  if (!bk) return t("c.avail", {d});
+  if (bk.status === "tentative") return t("c.hold", {d});
+  if (bk.slot && bk.slot !== "Full day") return t("c.half", {d, slot: t(bk.slot === "Day" ? "w.day" : "w.eve"), other: t(bk.slot === "Day" ? "w.eve" : "w.day")});
+  return t("c.full", {d});
 }
 function drawCal(){
-  title.textContent = view.toLocaleDateString("en-IN", {month:"long", year:"numeric"});
-  calEl.innerHTML = ["Mo","Tu","We","Th","Fr","Sa","Su"].map(d => `<div class="dow">${d}</div>`).join("");
+  title.textContent = view.toLocaleDateString(LOC(), {month:"long", year:"numeric"});
+  calEl.innerHTML = t("c.dow").split(",").map(d => `<div class="dow">${d}</div>`).join("");
   const first = (view.getDay() + 6) % 7, days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
   for (let i = 0; i < first; i++) calEl.appendChild(document.createElement("div"));
   for (let d = 1; d <= days; d++) {
@@ -591,9 +682,9 @@ function drawCal(){
     if (dt.getDay() === 0 || dt.getDay() === 6) b.classList.add("we");
     let label = fmt(dt);
     if (bk) {
-      if (bk.status === "tentative") { b.classList.add("tn"); label += ", on hold"; }
-      else if (bk.slot && bk.slot !== "Full day") { b.classList.add("half"); label += `, ${bk.slot.toLowerCase()} booked`; }
-      else { b.classList.add("bk"); label += ", booked"; }
+      if (bk.status === "tentative") { b.classList.add("tn"); label += ", " + t("cal.hold"); }
+      else if (bk.slot && bk.slot !== "Full day") { b.classList.add("half"); label += `, ${t(bk.slot === "Day" ? "w.day" : "w.eve")} ${t("cal.booked")}`; }
+      else { b.classList.add("bk"); label += ", " + t("cal.booked"); }
     }
     b.setAttribute("aria-label", label);
     if (dt < today) b.disabled = true;
@@ -613,7 +704,7 @@ async function loadBookings(){
     if (!r.ok) throw new Error("no api");
     const j = await r.json(); BOOK = j.dates || {};
   } catch {
-    document.getElementById("calNote").textContent = "Live availability could not be loaded. Please WhatsApp us to check your date.";
+    document.getElementById("calNote").textContent = t("c.offline");
   }
   drawCal();
 }
@@ -629,27 +720,29 @@ form.addEventListener("submit", e => {
   e.preventDefault();
   const v = id => document.getElementById(id).value.trim();
   const name = v("f-name"), phone = v("f-phone").replace(/\D/g, ""), date = v("f-date");
-  if (!name) { err.textContent = "Please add your name."; return; }
-  if (phone.length < 10) { err.textContent = "Please enter a 10-digit mobile number."; return; }
-  if (!date) { err.textContent = "Please pick an event date from the calendar or the date box."; return; }
+  if (!name) { err.textContent = t("e.name"); return; }
+  if (phone.length < 10) { err.textContent = t("e.phone"); return; }
+  if (!date) { err.textContent = t("e.date"); return; }
   err.textContent = "";
   const slot = form.querySelector("input[name=slot]:checked").value;
-  const nice = new Date(date + "T00:00").toLocaleDateString("en-IN", {weekday:"long", day:"numeric", month:"long", year:"numeric"});
-  const msg = `Namaste Panchwati Party Lawn,\n\nI'd like to check availability.\n\nName: ${name}\nMobile: ${phone}\nFunction: ${v("f-type")}\nDate: ${nice} (${slot})\nGuests: ${v("f-guests")}\nSpace: ${v("f-space")}` + (v("f-note") ? `\nNotes: ${v("f-note")}` : "");
+  const nice = new Date(date + "T00:00").toLocaleDateString(LOC(), {weekday:"long", day:"numeric", month:"long", year:"numeric"});
+  const sel = id => { const s = document.getElementById(id); return s.options[s.selectedIndex].text; };
+  const slotTxt = t(slot === "Day" ? "s.day" : slot === "Evening" ? "s.eve" : "s.full");
+  const msg = t("m.hello") + `\n\n${t("f.name")}: ${name}\n${t("f.phone")}: ${phone}\n${t("f.type")}: ${sel("f-type")}\n${t("f.date")}: ${nice} (${slotTxt})\n${t("f.guests")}: ${sel("f-guests")}\n${t("f.space")}: ${sel("f-space")}` + (v("f-note") ? `\n${t("f.note")}: ${v("f-note")}` : "");
   document.getElementById("msg").textContent = msg;
   document.getElementById("waLink").href = waBase + "?text=" + encodeURIComponent(msg);
   form.hidden = true; doneEl.hidden = false;
   const note = document.getElementById("copyNote");
-  note.textContent = "WhatsApp opens with this message ready. Tap send there to reach us.";
-  fetch("api/enquiry", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name, phone, date, slot, type: v("f-type"), guests: v("f-guests"), space: v("f-space"), note: v("f-note")})})
-    .then(r => { if (r.ok) note.textContent = "Your enquiry has reached Panchwati and we will call you back. For a faster reply, also send it on WhatsApp."; })
+  note.textContent = t("d.note");
+  fetch("api/enquiry", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name, phone, date, slot, type: v("f-type"), guests: v("f-guests"), space: v("f-space"), note: v("f-note"), website: v("f-website"), lang: LANG})})
+    .then(r => { if (r.ok) note.textContent = t("d.saved"); })
     .catch(() => {});
 });
 document.getElementById("editBtn").onclick = () => { doneEl.hidden = true; form.hidden = false; };
 document.getElementById("copyBtn").onclick = async () => {
   const note = document.getElementById("copyNote");
-  try { await navigator.clipboard.writeText(document.getElementById("msg").textContent); note.textContent = "Message copied. Paste it into WhatsApp or SMS."; }
-  catch { const r = document.createRange(); r.selectNodeContents(document.getElementById("msg")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); note.textContent = "Message selected. Copy it from your keyboard or phone."; }
+  try { await navigator.clipboard.writeText(document.getElementById("msg").textContent); note.textContent = t("d.copied"); }
+  catch { const r = document.createRange(); r.selectNodeContents(document.getElementById("msg")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); note.textContent = t("d.selected"); }
 };
 
 /* ===== events collection ===== */
@@ -664,7 +757,7 @@ const EVENTS_DEFAULT = {categories: [
   {id:"family", name:"Family parties", hi:"पारिवारिक", form:"Other", about:"Smaller get-togethers, kitty parties and pooja functions in the hall.", photos:[{src:"img/banquet.webp",caption:"Banquet hall"},{src:"img/corridor.webp",caption:"Lounge sofas"},{src:"img/booth.webp",caption:"Photo corner"}]}
 ]};
 const evTabs = document.getElementById("evTabs"), evPanel = document.getElementById("evPanel");
-let EVENTS = EVENTS_DEFAULT.categories;
+let EVENTS = EVENTS_DEFAULT.categories, EV_CUR = 0;
 function renderTabs(){
   evTabs.innerHTML = "";
   EVENTS.forEach((c, i) => {
@@ -672,8 +765,8 @@ function renderTabs(){
     b.type = "button"; b.setAttribute("role", "tab"); b.id = "tab-" + c.id;
     b.setAttribute("aria-controls", "evPanel");
     b.innerHTML = `<b></b><span></span><small></small>`;
-    b.querySelector("b").textContent = c.name; b.querySelector("span").textContent = c.hi;
-    b.querySelector("small").textContent = `${c.photos.length} photo${c.photos.length === 1 ? "" : "s"}`;
+    b.querySelector("b").textContent = LANG === "hi" ? c.hi : c.name; b.querySelector("span").textContent = LANG === "hi" ? c.name : c.hi;
+    b.querySelector("small").textContent = t(c.photos.length === 1 ? "ev.photo" : "ev.photos", {n: c.photos.length});
     b.onclick = () => selectEvent(i, true);
     b.onkeydown = e => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); const n = (i + (e.key === "ArrowRight" ? 1 : -1) + EVENTS.length) % EVENTS.length; selectEvent(n, true); evTabs.children[n].focus(); } };
     evTabs.appendChild(b);
@@ -681,25 +774,79 @@ function renderTabs(){
 }
 function selectEvent(i, animate){
   [...evTabs.children].forEach((b, j) => { b.setAttribute("aria-selected", i === j); b.tabIndex = i === j ? 0 : -1; });
-  const c = EVENTS[i];
+  const c = EVENTS[i]; EV_CUR = i;
   evPanel.setAttribute("aria-labelledby", "tab-" + c.id);
-  evPanel.innerHTML = `<div class="evhead"><div><span class="kicker"></span><h3></h3><p></p></div><a class="btn" href="#enquire">Enquire for this event</a></div><div class="evgrid"></div>`;
-  evPanel.querySelector(".kicker").textContent = c.hi;
-  evPanel.querySelector("h3").textContent = c.name;
-  evPanel.querySelector("p").textContent = c.about;
+  evPanel.innerHTML = `<div class="evhead"><div><span class="kicker"></span><h3></h3><p></p></div><a class="btn" href="#enquire"></a></div><div class="evgrid"></div>`;
+  evPanel.querySelector(".kicker").textContent = LANG === "hi" ? c.name : c.hi;
+  evPanel.querySelector("h3").textContent = LANG === "hi" ? c.hi : c.name;
+  evPanel.querySelector("p").textContent = (LANG === "hi" && c.aboutHi) || c.about;
+  evPanel.querySelector(".btn").textContent = t("ev.btn");
   evPanel.querySelector(".btn").onclick = () => { const sel = document.getElementById("f-type"); [...sel.options].forEach(o => { if (o.text === c.form) sel.value = o.value; }); };
   const grid = evPanel.querySelector(".evgrid");
   c.photos.forEach(ph => {
     const f = document.createElement("figure");
     f.innerHTML = `<div class="ph"><img loading="lazy"></div><figcaption></figcaption>`;
-    f.querySelector("img").src = ph.src; f.querySelector("img").alt = `${c.name}: ${ph.caption}`;
-    f.querySelector("figcaption").textContent = ph.caption;
+    const cap = (LANG === "hi" && ph.captionHi) || ph.caption;
+    f.querySelector("img").src = ph.src; f.querySelector("img").alt = `${c.name}: ${cap}`;
+    f.querySelector("figcaption").textContent = cap;
     grid.appendChild(f);
   });
   if (animate) { evPanel.classList.remove("swap"); void evPanel.offsetWidth; evPanel.classList.add("swap"); }
 }
 renderTabs(); selectEvent(0, false);
-fetch("data/events.json", {cache: "no-store"}).then(r => r.ok ? r.json() : null).then(j => { if (j && j.categories && j.categories.length) { EVENTS = j.categories; renderTabs(); selectEvent(0, false); } }).catch(() => {});
+fetch("api/events", {cache: "no-store"}).then(r => r.ok ? r.json() : null).then(j => { if (j && j.categories && j.categories.length) { EVENTS = j.categories; renderTabs(); selectEvent(EV_CUR, false); } }).catch(() => {});
+/* ===== FAQ + prices ===== */
+function renderFaq(){
+  const box = document.getElementById("faqList"); box.innerHTML = "";
+  const fill = s => s.replace("{lawn}", CONFIG.capacity.lawn).replace("{hall}", CONFIG.capacity.hall).replace("{parking}", CONFIG.capacity.parking);
+  CONFIG.faq.forEach(f => {
+    const q = LANG === "hi" && f.hi ? f.hi.q : f.q, a = LANG === "hi" && f.hi ? f.hi.a : f.a;
+    const d = document.createElement("details"); d.innerHTML = "<summary></summary><p></p>";
+    d.querySelector("summary").textContent = q; d.querySelector("p").textContent = fill(a);
+    box.appendChild(d);
+  });
+  let ld = document.getElementById("faqLd");
+  if (!ld) { ld = document.createElement("script"); ld.type = "application/ld+json"; ld.id = "faqLd"; document.head.appendChild(ld); }
+  ld.textContent = JSON.stringify({"@context": "https://schema.org", "@type": "FAQPage", mainEntity: CONFIG.faq.map(f => ({"@type": "Question", name: f.q, acceptedAnswer: {"@type": "Answer", text: fill(f.a)}}))});
+}
+function renderPrices(){
+  const p = CONFIG.prices, box = document.getElementById("prices");
+  const items = [[p.rent, "pr.rent"], [p.vegPlate, "pr.veg"], [p.nonVegPlate, "pr.nonveg"]].filter(([v]) => v).map(([v, k]) => [v, t(k)])
+    .concat((p.decor || []).filter(d => d && d.price).map(d => [d.price, d.name]));
+  box.hidden = !(p.show && items.length);
+  box.innerHTML = "";
+  items.forEach(([v, l]) => { const d = document.createElement("div"); d.innerHTML = "<b></b><span></span>"; d.querySelector("b").textContent = t("pr.from", {v}); d.querySelector("span").textContent = l; box.appendChild(d); });
+}
+/* ===== language switch (English by default, Hindi on request) ===== */
+const HI_CACHE = {};
+function applyLang(){
+  document.documentElement.lang = LANG;
+  const hi = HI_CACHE.hi || {};
+  document.querySelectorAll("[data-i18n],[data-i18n-html],[data-i18n-ph]").forEach(el => {
+    const k = el.dataset.i18n || el.dataset.i18nHtml || el.dataset.i18nPh;
+    if (el.dataset.i18nPh) { if (el.dataset.en === undefined) el.dataset.en = el.placeholder; el.placeholder = LANG === "hi" && hi[k] ? hi[k] : el.dataset.en; return; }
+    if (el.dataset.en === undefined) el.dataset.en = el.innerHTML;
+    const v = LANG === "hi" && hi[k] ? hi[k] : el.dataset.en;
+    if (el.dataset.i18nHtml) el.innerHTML = v; else el.textContent = el.dataset.i18nHtml ? v : (LANG === "hi" && hi[k] ? v : el.dataset.en.replace(/&amp;/g, "&"));
+  });
+  const lb = document.getElementById("langBtn");
+  lb.textContent = LANG === "hi" ? "English" : "हिंदी"; lb.lang = LANG === "hi" ? "en" : "hi";
+  lb.setAttribute("aria-label", LANG === "hi" ? "View in English" : "हिंदी में देखें");
+  document.title = t("meta.title"); document.querySelector("meta[name=description]").content = t("meta.desc");
+  drawCal(); renderTabs(); selectEvent(EV_CUR, false); renderFaq(); renderPrices();
+  if (dateIn.value) calInfo.textContent = "";
+}
+async function setLang(l){
+  if (l === "hi" && !HI_CACHE.hi) {
+    try { HI_CACHE.hi = await (await fetch("data/hi.json")).json(); } catch { return; }
+  }
+  LANG = l; try { localStorage.setItem("lang", l); } catch {}
+  applyLang();
+}
+document.getElementById("langBtn").onclick = () => setLang(LANG === "hi" ? "en" : "hi");
+renderFaq(); renderPrices();
+let want = new URLSearchParams(location.search).get("lang"); try { want = want || localStorage.getItem("lang"); } catch {}
+if (want === "hi") setLang("hi");
 </script>
 
 </body>

@@ -5,7 +5,7 @@ const STATUSES = ["new", "contacted", "site visit", "booked", "lost"];
 // Owner-only: list enquiries, change their status, delete them.
 export default async function handler(req, res) {
   if (!hasStore()) return res.status(503).json({ error: "Storage is not set up yet. Add Upstash Redis in Vercel." });
-  if (!isAdmin(req)) return res.status(401).json({ error: "Wrong password" });
+  if (!(await isAdmin(req))) return res.status(401).json({ error: "Wrong password" });
 
   if (req.method === "GET") {
     const all = Object.values(await hgetallJson("enquiries"));

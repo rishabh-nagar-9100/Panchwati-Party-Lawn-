@@ -69,11 +69,18 @@ label{display:grid;gap:4px;font-size:12px;letter-spacing:.08em;text-transform:up
 .filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--night);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:20}
 .empty{color:var(--soft);padding:20px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+.phgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:16px}
+.phc{display:grid;gap:6px;border:1px solid var(--line);border-radius:12px;padding:8px;background:#fff}
+.phc img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:8px;background:#eee}
+.phc input{font-size:14px;padding:7px 9px}
+.phc .row{gap:6px}
+.phc .row button{flex:1;min-width:0;padding:5px 6px;font-size:12px}
+.phc.up{opacity:.6}
 </style>
 </head>
 <body>
 <header><div class="in"><b>Panchwati · Owner</b>
-  <nav id="tabs" hidden><button data-v="cal" aria-selected="true">Booking calendar</button><button data-v="enq" aria-selected="false">Enquiries</button><button id="logout">Log out</button></nav></div></header>
+  <nav id="tabs" hidden><button data-v="cal" aria-selected="true">Booking calendar</button><button data-v="enq" aria-selected="false">Enquiries</button><button data-v="ph" aria-selected="false">Photos</button><button id="logout">Log out</button></nav></div></header>
 
 <main>
   <form class="card login" id="login">
@@ -115,6 +122,24 @@ label{display:grid;gap:4px;font-size:12px;letter-spacing:.08em;text-transform:up
     <div class="filters" id="eFilters"></div>
     <div class="enq" id="enqList"></div>
   </section>
+
+  <section id="v-ph" hidden>
+    <h2>Event photos</h2>
+    <p style="color:var(--soft);margin:4px 0 10px">Pick an event tab, add photos from your phone or computer, write a short caption for each, then press <b>Save photos</b>. Photos are shrunk automatically before upload.</p>
+    <div class="filters" id="phTabs"></div>
+    <div class="card">
+      <div class="row" style="align-items:center;justify-content:space-between">
+        <h3 id="phTitle" style="margin:0;font-family:var(--f-display);font-weight:500;font-size:24px"></h3>
+        <div class="row" style="flex:0 0 auto">
+          <label class="btn ghost small" style="cursor:pointer">Add photos<input id="phFile" type="file" accept="image/*" multiple hidden></label>
+          <button class="btn ghost small" type="button" id="phReset">Reset to default photos</button>
+          <button class="btn small" type="button" id="phSave">Save photos</button>
+        </div>
+      </div>
+      <p class="err" id="phMsg" style="margin:8px 0 0"></p>
+      <div class="phgrid" id="phGrid"></div>
+    </div>
+  </section>
 </main>
 <div class="toast" id="toast" hidden></div>
 
@@ -152,7 +177,8 @@ $("logout").onclick = () => { KEY = ""; try { sessionStorage.removeItem("pw-key"
 document.querySelectorAll("#tabs [data-v]").forEach(b => b.onclick = () => show(b.dataset.v));
 function show(v){
   document.querySelectorAll("#tabs [data-v]").forEach(b => b.setAttribute("aria-selected", b.dataset.v === v));
-  $("v-cal").hidden = v !== "cal"; $("v-enq").hidden = v !== "enq";
+  $("v-cal").hidden = v !== "cal"; $("v-enq").hidden = v !== "enq"; $("v-ph").hidden = v !== "ph";
+  if (v === "ph" && !PH.length) loadPhotos();
 }
 function stats(){
   const up = Object.entries(BOOK).filter(([d, b]) => d >= today);
@@ -256,6 +282,79 @@ function drawEnq(){
     box.appendChild(c);
   });
 }
+/* ===== event photos ===== */
+let PH = [], phSel = 0, phDirty = false;
+const phMsg = (m, bad) => { const el = $("phMsg"); el.textContent = m; el.style.color = bad ? "var(--bk)" : "var(--ok)"; };
+async function loadPhotos(){
+  try { PH = (await api("api/events")).categories; drawPhTabs(); drawPh(); }
+  catch (err) { phMsg(err.message, true); }
+}
+function drawPhTabs(){
+  $("phTabs").innerHTML = "";
+  PH.forEach((c, i) => {
+    const b = document.createElement("button"); b.type = "button";
+    b.textContent = `${c.name} (${c.photos.length})`; b.setAttribute("aria-pressed", phSel === i);
+    b.onclick = () => { if (phDirty && !confirm("Leave without saving the changes to this tab?")) return; phSel = i; phDirty = false; drawPhTabs(); drawPh(); };
+    $("phTabs").appendChild(b);
+  });
+}
+function drawPh(){
+  const c = PH[phSel]; $("phTitle").textContent = c.name + " · " + c.hi; phMsg("");
+  const g = $("phGrid"); g.innerHTML = "";
+  c.photos.forEach((p, i) => {
+    const d = document.createElement("div"); d.className = "phc";
+    d.innerHTML = `<img loading="lazy"><input placeholder="Caption, e.g. Sharma wedding, Dec 2026"><div class="row"><button type="button" class="btn ghost small">◀</button><button type="button" class="btn ghost small">▶</button><button type="button" class="btn ghost small" style="color:var(--bk)">Remove</button></div>`;
+    d.querySelector("img").src = p.src; d.querySelector("img").alt = p.caption;
+    const inp = d.querySelector("input"); inp.value = p.caption; inp.oninput = () => { p.caption = inp.value; phDirty = true; };
+    const [l, r, x] = d.querySelectorAll("button");
+    l.disabled = i === 0; r.disabled = i === c.photos.length - 1;
+    l.onclick = () => { c.photos.splice(i - 1, 0, c.photos.splice(i, 1)[0]); phDirty = true; drawPh(); };
+    r.onclick = () => { c.photos.splice(i + 1, 0, c.photos.splice(i, 1)[0]); phDirty = true; drawPh(); };
+    x.onclick = () => { c.photos.splice(i, 1); phDirty = true; drawPh(); };
+    g.appendChild(d);
+  });
+  if (!c.photos.length) g.innerHTML = `<div class="empty">No photos. Add some, or press Reset to bring back the default venue photos.</div>`;
+}
+// shrink a photo in the browser to a 1600px-wide WebP before uploading
+function shrink(file){
+  return new Promise((resolve, reject) => {
+    const img = new Image(); const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const k = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const cv = document.createElement("canvas"); cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+      cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+      URL.revokeObjectURL(url);
+      cv.toBlob(b => b ? resolve(b) : reject(new Error("Could not convert the photo")), "image/webp", 0.82);
+    };
+    img.onerror = () => reject(new Error("That file is not a photo"));
+    img.src = url;
+  });
+}
+$("phFile").onchange = async () => {
+  const files = [...$("phFile").files]; $("phFile").value = "";
+  const c = PH[phSel]; let n = 0;
+  for (const f of files) {
+    try {
+      phMsg(`Uploading ${++n} of ${files.length}…`);
+      const blob = await shrink(f);
+      const r = await fetch(`api/upload?name=${encodeURIComponent(c.id + "-" + f.name)}`, {method: "POST", headers: {"x-admin-key": KEY, "Content-Type": "image/webp"}, body: blob});
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(j.error || "Upload failed");
+      c.photos.push({src: j.url, caption: f.name.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ")}); phDirty = true; drawPh();
+    } catch (err) { phMsg(err.message, true); return; }
+  }
+  phMsg("Uploaded. Edit the captions, then press Save photos.");
+};
+$("phSave").onclick = async () => {
+  const c = PH[phSel];
+  try { const r = await api("api/events", {method: "POST", body: JSON.stringify({id: c.id, photos: c.photos})}); c.photos = r.photos; phDirty = false; drawPhTabs(); drawPh(); phMsg("Saved. The website shows these photos now."); toast("Photos saved"); }
+  catch (err) { phMsg(err.message, true); }
+};
+$("phReset").onclick = async () => {
+  const c = PH[phSel]; if (!confirm("Go back to the default venue photos for " + c.name + "? Uploaded photos in this tab will be deleted.")) return;
+  try { const r = await api("api/events", {method: "DELETE", body: JSON.stringify({id: c.id})}); c.photos = r.photos; phDirty = false; drawPhTabs(); drawPh(); toast("Default photos restored"); }
+  catch (err) { phMsg(err.message, true); }
+};
 if (KEY) boot();
 </script>
 </body>

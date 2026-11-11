@@ -9,17 +9,21 @@
       "photos": [
         {
           "src": "img/gate.webp",
-          "caption": "Baraat entrance"
+          "caption": "Baraat entrance",
+          "captionHi": "बारात का प्रवेश"
         },
         {
           "src": "img/stage.webp",
-          "caption": "Jaimala stage"
+          "caption": "Jaimala stage",
+          "captionHi": "जयमाला मंच"
         },
         {
           "src": "img/welcome.webp",
-          "caption": "Floral walkway"
+          "caption": "Floral walkway",
+          "captionHi": "फूलों का रास्ता"
         }
-      ]
+      ],
+      "aboutHi": "रोशनी से सजे गेट पर बारात का स्वागत, शाही मंच पर जयमाला, फेरे और डिनर, सब एक ही पते पर।"
     },
     {
       "id": "receptions",
@@ -30,17 +34,21 @@
       "photos": [
         {
           "src": "img/lawn.webp",
-          "caption": "Lawn reception"
+          "caption": "Lawn reception",
+          "captionHi": "लॉन पर रिसेप्शन"
         },
         {
           "src": "img/stage.webp",
-          "caption": "Couple's stage"
+          "caption": "Couple's stage",
+          "captionHi": "जोड़े का मंच"
         },
         {
           "src": "img/banquet.webp",
-          "caption": "Banquet dinner"
+          "caption": "Banquet dinner",
+          "captionHi": "बैंक्वेट डिनर"
         }
-      ]
+      ],
+      "aboutHi": "मेहमान गलियारे से आते हैं, मंच पर जोड़े से मिलते हैं और लॉन व हॉल में भोजन करते हैं।"
     },
     {
       "id": "engagements",
@@ -51,17 +59,21 @@
       "photos": [
         {
           "src": "img/stage.webp",
-          "caption": "Ring ceremony stage"
+          "caption": "Ring ceremony stage",
+          "captionHi": "सगाई का मंच"
         },
         {
           "src": "img/booth.webp",
-          "caption": "Family photo wall"
+          "caption": "Family photo wall",
+          "captionHi": "पारिवारिक फ़ोटो वॉल"
         },
         {
           "src": "img/corridor.webp",
-          "caption": "Guest walkway"
+          "caption": "Guest walkway",
+          "captionHi": "मेहमानों का गलियारा"
         }
-      ]
+      ],
+      "aboutHi": "मंच पर अंगूठी की रस्म, फूलों की दीवार पर पारिवारिक फ़ोटो और हॉल में लंच।"
     },
     {
       "id": "haldi-mehendi",
@@ -72,17 +84,21 @@
       "photos": [
         {
           "src": "img/lawn.webp",
-          "caption": "Open lawn"
+          "caption": "Open lawn",
+          "captionHi": "खुला लॉन"
         },
         {
           "src": "img/booth.webp",
-          "caption": "Floral corner"
+          "caption": "Floral corner",
+          "captionHi": "फूलों का कोना"
         },
         {
           "src": "img/welcome.webp",
-          "caption": "Entrance décor"
+          "caption": "Entrance décor",
+          "captionHi": "प्रवेश की सजावट"
         }
-      ]
+      ],
+      "aboutHi": "खुले लॉन पर दिन के चमकीले फ़ंक्शन, परिवार के बैठने की जगह और ढोल के लिए खुला मैदान।"
     },
     {
       "id": "birthdays",
@@ -93,17 +109,21 @@
       "photos": [
         {
           "src": "img/banquet.webp",
-          "caption": "Banquet hall"
+          "caption": "Banquet hall",
+          "captionHi": "बैंक्वेट हॉल"
         },
         {
           "src": "img/booth.webp",
-          "caption": "Photo booth"
+          "caption": "Photo booth",
+          "captionHi": "फ़ोटो बूथ"
         },
         {
           "src": "img/lawn.webp",
-          "caption": "Lawn party"
+          "caption": "Lawn party",
+          "captionHi": "लॉन पार्टी"
         }
-      ]
+      ],
+      "aboutHi": "पहले जन्मदिन से 60वीं सालगिरह तक, बैंक्वेट हॉल में या खुले लॉन पर।"
     },
     {
       "id": "anniversaries",
@@ -114,17 +134,21 @@
       "photos": [
         {
           "src": "img/stage.webp",
-          "caption": "Anniversary stage"
+          "caption": "Anniversary stage",
+          "captionHi": "सालगिरह का मंच"
         },
         {
           "src": "img/banquet.webp",
-          "caption": "Family dinner"
+          "caption": "Family dinner",
+          "captionHi": "पारिवारिक डिनर"
         },
         {
           "src": "img/corridor.webp",
-          "caption": "Chandelier corridor"
+          "caption": "Chandelier corridor",
+          "captionHi": "झूमरों का गलियारा"
         }
-      ]
+      ],
+      "aboutHi": "सिल्वर और गोल्डन जुबली, जोड़े के लिए मंच और पूरे परिवार के लिए डिनर।"
     },
     {
       "id": "corporate",
@@ -135,17 +159,21 @@
       "photos": [
         {
           "src": "img/banquet.webp",
-          "caption": "Dinner seating"
+          "caption": "Dinner seating",
+          "captionHi": "डिनर सीटिंग"
         },
         {
           "src": "img/lawn.webp",
-          "caption": "Open-air evening"
+          "caption": "Open-air evening",
+          "captionHi": "खुले में शाम"
         },
         {
           "src": "img/gate.webp",
-          "caption": "Arrival"
+          "caption": "Arrival",
+          "captionHi": "आगमन"
         }
-      ]
+      ],
+      "aboutHi": "वार्षिक दिवस, अवार्ड नाइट और टीम डिनर, बुफ़े सर्विस और लाउंज सीटिंग के साथ।"
     },
     {
       "id": "family",
@@ -156,17 +184,21 @@
       "photos": [
         {
           "src": "img/banquet.webp",
-          "caption": "Banquet hall"
+          "caption": "Banquet hall",
+          "captionHi": "बैंक्वेट हॉल"
         },
         {
           "src": "img/corridor.webp",
-          "caption": "Lounge sofas"
+          "caption": "Lounge sofas",
+          "captionHi": "लाउंज सोफ़े"
         },
         {
           "src": "img/booth.webp",
-          "caption": "Photo corner"
+          "caption": "Photo corner",
+          "captionHi": "फ़ोटो कोना"
         }
-      ]
+      ],
+      "aboutHi": "छोटे मिलन समारोह, किटी पार्टी और पूजा के फ़ंक्शन, हॉल में।"
     }
   ]
 }
