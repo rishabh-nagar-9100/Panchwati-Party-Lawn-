@@ -1,8 +1,9 @@
-import { isAdmin, clean } from "./_store.js";
+import { isAdmin, clean, hasBlob } from "./_store.js";
 
 // Owner-only photo upload to Vercel Blob. The admin page shrinks the photo to WebP
 // in the browser first, then POSTs the bytes here:  POST /api/upload?name=weddings-1.webp
-// Needs BLOB_READ_WRITE_TOKEN (added by Vercel when a Blob store is connected).
+// Auth: BLOB_READ_WRITE_TOKEN if present, otherwise Vercel OIDC + BLOB_STORE_ID
+// (what the dashboard adds when a Blob store is connected with OIDC). @vercel/blob picks it.
 
 export const config = { api: { bodyParser: false } };
 const MAX_BYTES = 4 * 1024 * 1024;
@@ -30,8 +31,13 @@ export default async function handler(req, res) {
     await writeFile(`${process.env.DEV_BLOB_DIR}/${file}`, body);
     return res.status(200).json({ ok: true, url: `${process.env.DEV_BLOB_BASE}/${file}` });
   }
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return res.status(503).json({ error: "Photo storage is not set up yet. Add Vercel Blob to this project." });
-  const { put } = await import("@vercel/blob");
-  const blob = await put(name, body, { access: "public", contentType: type, addRandomSuffix: true, cacheControlMaxAge: 31536000 });
-  return res.status(200).json({ ok: true, url: blob.url });
+  if (!hasBlob()) return res.status(503).json({ error: "Photo storage is not set up yet. Connect a Vercel Blob store to this project." });
+  try {
+    const { put } = await import("@vercel/blob");
+    const blob = await put(name, body, { access: "public", contentType: type, addRandomSuffix: true, cacheControlMaxAge: 31536000 });
+    return res.status(200).json({ ok: true, url: blob.url });
+  } catch (e) {
+    console.error("blob upload failed:", e.message);
+    return res.status(502).json({ error: "Upload failed: " + e.message });
+  }
 }

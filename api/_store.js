@@ -6,6 +6,8 @@ const URL_ = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
 const TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
 export const hasStore = () => Boolean(URL_ && TOKEN);
+// Vercel Blob is usable with a read-write token, or with OIDC (Vercel injects the token at runtime) plus the store id.
+export const hasBlob = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
 
 export async function redis(command) {
   const r = await fetch(URL_, {

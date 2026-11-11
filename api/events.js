@@ -1,4 +1,4 @@
-import { hasStore, redis, hgetallJson, isAdmin, clean } from "./_store.js";
+import { hasStore, hasBlob, redis, hgetallJson, isAdmin, clean } from "./_store.js";
 import defaults from "../data/events.json" with { type: "json" };
 
 // Event tabs: the text comes from data/events.json; the photos of each tab can be
@@ -17,7 +17,7 @@ export async function currentCategories() {
 
 async function removeBlobs(urls) {
   const gone = urls.filter(u => /vercel-storage\.com/.test(u));
-  if (!gone.length || !process.env.BLOB_READ_WRITE_TOKEN) return;
+  if (!gone.length || !hasBlob()) return;
   try { const { del } = await import("@vercel/blob"); await del(gone); } catch (e) { console.error("blob delete failed:", e.message); }
 }
 
