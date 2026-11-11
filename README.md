@@ -43,6 +43,16 @@ Using the command line instead: `npm i -g vercel`, then in this folder run `verc
 
 In `index.html`, at the top of the `<script>` section, edit `CONFIG`: contact numbers, address, capacity, `prices` (set `show: true` to display "starting from" prices), `social` links and the `faq` list. Hindi copy for the rest of the page is in `data/hi.json`.
 
+## Venue photos (hero and cards)
+
+Put full-resolution originals in `originals/` (`gate.jpg`, `welcome.jpg`, `corridor.jpg`, `stage.jpg`, `lawn.jpg`, `banquet.jpg`, `booth.jpg`), then run:
+
+```bash
+npm i --no-save sharp && node scripts/build-images.mjs
+```
+
+It writes WebP and AVIF at 640, 1024, 1280, 1920, 2560 and 3200 px (never larger than the original) into `img/`. The hero walk-in shows each photo at up to 135% of the screen, so a 3200 px original keeps it sharp on a 2x laptop. Without `originals/` the script uses the current `img/*.webp` files (960 to 1500 px), which is the limit of what the hero can show today.
+
 ## Event photos
 
 Upload them from `/admin → Photos`; they go to Vercel Blob and the list is kept in Redis. `data/events.json` only holds the defaults.
