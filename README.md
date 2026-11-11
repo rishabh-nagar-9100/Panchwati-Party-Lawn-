@@ -24,7 +24,7 @@ Static website + three small Vercel functions. No build step.
 2. Put this folder on GitHub: github.com → New repository `panchwati-party-lawn` → "uploading an existing file" → drag in everything inside this folder → Commit.
 3. In Vercel: **Add New → Project → Import** the `panchwati-party-lawn` repo. Framework preset: **Other**. Click **Deploy**.
 4. Add the database: Vercel project → **Storage** (or Marketplace) → **Upstash → Redis** → Create → connect it to this project. Vercel adds the `KV_REST_API_URL` and `KV_REST_API_TOKEN` settings for you.
-5. Add photo storage: **Storage → Blob → Create** and connect it. Vercel adds `BLOB_READ_WRITE_TOKEN`.
+5. Add photo storage: **Storage → Blob → Create** and connect it. Vercel adds `BLOB_STORE_ID`; the code signs in with Vercel OIDC (a `BLOB_READ_WRITE_TOKEN` also works if present).
 6. Set your owner password: project → **Settings → Environment Variables** → add `ADMIN_PASSWORD` = a strong password.
 7. Optional alerts: `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` for Telegram, `RESEND_API_KEY` + `ALERT_EMAIL` for an email copy (see OWNER-GUIDE.md).
 8. **Deployments → Redeploy** so the new settings take effect.

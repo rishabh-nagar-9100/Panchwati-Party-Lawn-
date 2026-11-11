@@ -96,6 +96,6 @@ Email copy (optional): create a free account at resend.com, make an API key, and
 ## 7. If something looks wrong
 
 - **Calendar shows "Live availability could not be loaded"**: the database is not connected. In Vercel → project → **Storage**, make sure the Upstash Redis store is connected, then Redeploy.
-- **"Photo storage is not set up yet"** in the Photos tab: in Vercel → project → **Storage**, create a **Blob** store and connect it, then Redeploy.
+- **"Photo storage is not set up yet"** in the Photos tab: in Vercel → project → **Storage**, make sure the Blob store (panchwati-photos) is connected to the project, then Redeploy. No token needs copying: the site signs in to Blob with Vercel's built-in OIDC and the store id.
 - **"That password is not right"** after many tries: wait 15 minutes (wrong attempts are limited for safety) and try again.
 - Anything else: open vercel.com → project → **Deployments** and press **Redeploy** on the latest one. Nothing is lost; bookings, enquiries and photos stay in the database.
