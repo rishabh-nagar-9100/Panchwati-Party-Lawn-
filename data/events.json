@@ -1,0 +1,172 @@
+{
+  "categories": [
+    {
+      "id": "weddings",
+      "name": "Weddings",
+      "hi": "विवाह",
+      "form": "Wedding",
+      "about": "Baraat welcome at the lit gate, jaimala on the royal stage, pheras and dinner, all at one address.",
+      "photos": [
+        {
+          "src": "img/gate.webp",
+          "caption": "Baraat entrance"
+        },
+        {
+          "src": "img/stage.webp",
+          "caption": "Jaimala stage"
+        },
+        {
+          "src": "img/welcome.webp",
+          "caption": "Floral walkway"
+        }
+      ]
+    },
+    {
+      "id": "receptions",
+      "name": "Receptions",
+      "hi": "रिसेप्शन",
+      "form": "Reception",
+      "about": "Guests arrive through the corridor, greet the couple on stage and dine on the lawn and in the hall.",
+      "photos": [
+        {
+          "src": "img/lawn.webp",
+          "caption": "Lawn reception"
+        },
+        {
+          "src": "img/stage.webp",
+          "caption": "Couple's stage"
+        },
+        {
+          "src": "img/banquet.webp",
+          "caption": "Banquet dinner"
+        }
+      ]
+    },
+    {
+      "id": "engagements",
+      "name": "Engagements",
+      "hi": "सगाई",
+      "form": "Engagement / Sagai",
+      "about": "Ring ceremony on the stage, family photographs at the flower wall and lunch in the hall.",
+      "photos": [
+        {
+          "src": "img/stage.webp",
+          "caption": "Ring ceremony stage"
+        },
+        {
+          "src": "img/booth.webp",
+          "caption": "Family photo wall"
+        },
+        {
+          "src": "img/corridor.webp",
+          "caption": "Guest walkway"
+        }
+      ]
+    },
+    {
+      "id": "haldi-mehendi",
+      "name": "Haldi & Mehendi",
+      "hi": "हल्दी · मेहंदी",
+      "form": "Haldi / Mehendi",
+      "about": "Bright daytime functions on the open lawn, with seating for the family and space for dhol.",
+      "photos": [
+        {
+          "src": "img/lawn.webp",
+          "caption": "Open lawn"
+        },
+        {
+          "src": "img/booth.webp",
+          "caption": "Floral corner"
+        },
+        {
+          "src": "img/welcome.webp",
+          "caption": "Entrance décor"
+        }
+      ]
+    },
+    {
+      "id": "birthdays",
+      "name": "Birthdays",
+      "hi": "जन्मदिन",
+      "form": "Birthday",
+      "about": "From first birthdays to 60th celebrations, in the banquet hall or out on the lawn.",
+      "photos": [
+        {
+          "src": "img/banquet.webp",
+          "caption": "Banquet hall"
+        },
+        {
+          "src": "img/booth.webp",
+          "caption": "Photo booth"
+        },
+        {
+          "src": "img/lawn.webp",
+          "caption": "Lawn party"
+        }
+      ]
+    },
+    {
+      "id": "anniversaries",
+      "name": "Anniversaries",
+      "hi": "सालगिरह",
+      "form": "Anniversary",
+      "about": "Silver and golden jubilees with a stage for the couple and dinner for the whole family.",
+      "photos": [
+        {
+          "src": "img/stage.webp",
+          "caption": "Anniversary stage"
+        },
+        {
+          "src": "img/banquet.webp",
+          "caption": "Family dinner"
+        },
+        {
+          "src": "img/corridor.webp",
+          "caption": "Chandelier corridor"
+        }
+      ]
+    },
+    {
+      "id": "corporate",
+      "name": "Corporate dinners",
+      "hi": "कॉर्पोरेट",
+      "form": "Corporate event",
+      "about": "Annual days, award nights and team dinners with buffet service and lounge seating.",
+      "photos": [
+        {
+          "src": "img/banquet.webp",
+          "caption": "Dinner seating"
+        },
+        {
+          "src": "img/lawn.webp",
+          "caption": "Open-air evening"
+        },
+        {
+          "src": "img/gate.webp",
+          "caption": "Arrival"
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "name": "Family parties",
+      "hi": "पारिवारिक",
+      "form": "Other",
+      "about": "Smaller get-togethers, kitty parties and pooja functions in the hall.",
+      "photos": [
+        {
+          "src": "img/banquet.webp",
+          "caption": "Banquet hall"
+        },
+        {
+          "src": "img/corridor.webp",
+          "caption": "Lounge sofas"
+        },
+        {
+          "src": "img/booth.webp",
+          "caption": "Photo corner"
+        }
+      ]
+    }
+  ]
+}

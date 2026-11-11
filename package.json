@@ -1,0 +1,6 @@
+{
+  "name": "panchwati-party-lawn",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Panchwati Owner Panel</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#f6f1e5;--card:#fffdf8;--ink:#2b2420;--soft:#6f655b;--line:#e2d7c0;--gold:#a8823a;--night:#0f1120;--bk:#8c2236;--tn:#c98a1a;--ok:#2f7a4a;
+  --f-display:"Cormorant Garamond",Georgia,serif;--f-body:"Jost",system-ui,sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--f-body)}
+header{background:var(--night);color:#efe6d4;position:sticky;top:0;z-index:5}
+header .in{max-width:1200px;margin:0 auto;padding:14px max(16px,env(safe-area-inset-left,0px));display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+header b{font-family:var(--f-display);font-weight:500;font-size:22px;letter-spacing:.12em;text-transform:uppercase}
+nav{display:flex;gap:6px}
+nav button{font:500 13px var(--f-body);letter-spacing:.06em;background:transparent;color:#cfc4ae;border:1px solid #3a3f5c;padding:8px 14px;border-radius:999px;cursor:pointer}
+nav button[aria-selected="true"]{background:#e3c88d;color:var(--night);border-color:#e3c88d}
+main{max-width:1200px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left,0px)) 60px}
+h1,h2{font-family:var(--f-display);font-weight:500;margin:0}
+h2{font-size:30px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+.grid{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.btn{font:500 14px var(--f-body);border:1px solid var(--ink);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.small{padding:6px 10px;font-size:13px}
+.login{max-width:380px;margin:12vh auto;display:grid;gap:14px;text-align:center}
+input,select,textarea{font:400 15px var(--f-body);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+label{display:grid;gap:4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.err{color:var(--bk);min-height:1.2em;font-size:14px}
+.calh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;font-variant-numeric:tabular-nums}
+.cal .dow{text-align:center;font-size:11px;letter-spacing:.12em;color:var(--soft);text-transform:uppercase}
+.cal button{aspect-ratio:1.1;border:1px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;font:500 15px var(--f-body);color:var(--ink);display:grid;place-items:center;position:relative;min-width:0;padding:0}
+.cal button small{position:absolute;bottom:3px;left:0;right:0;font-size:9px;letter-spacing:.04em;text-transform:uppercase}
+.cal button.bk{background:var(--bk);color:#fff;border-color:var(--bk)}
+.cal button.tn{background:#fbecc9;border-color:var(--tn)}
+.cal button.half{background:linear-gradient(135deg,var(--bk) 50%,#fff 50%);color:var(--ink)}
+.cal button.sel{outline:3px solid var(--gold);outline-offset:1px}
+.cal button.past{opacity:.45}
+.form{display:grid;gap:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:120px}
+.eq .row>a,.eq .row>button{flex:0 0 auto;min-width:0}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--soft);margin-top:12px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.list{display:grid;gap:8px;margin-top:12px}
+.item{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;flex-wrap:wrap}
+.pill{font-size:12px;padding:3px 10px;border-radius:999px;background:#efe7d6;white-space:nowrap}
+.pill.booked{background:var(--bk);color:#fff}.pill.tentative{background:#fbecc9}
+.pill.new{background:#dbeee1;color:var(--ok)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat b{font-family:var(--f-display);font-size:34px;font-weight:500;display:block;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--soft);letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+.enq{display:grid;gap:12px}
+.eq{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:8px}
+.eq header{all:unset;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.eq h3{margin:0;font-family:var(--f-display);font-size:24px;font-weight:500}
+.eq dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:6px 16px;margin:0}
+.eq dt{font-size:11px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase}
+.eq dd{margin:0}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.filters button{font:500 13px var(--f-body);border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--night);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:20}
+.empty{color:var(--soft);padding:20px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+</style>
+</head>
+<body>
+<header><div class="in"><b>Panchwati · Owner</b>
+  <nav id="tabs" hidden><button data-v="cal" aria-selected="true">Booking calendar</button><button data-v="enq" aria-selected="false">Enquiries</button><button id="logout">Log out</button></nav></div></header>
+
+<main>
+  <form class="card login" id="login">
+    <h2>Owner login</h2>
+    <p style="margin:0;color:var(--soft)">Enter the admin password you set in Vercel.</p>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="Password">
+    <p class="err" id="loginErr"></p>
+    <button class="btn" type="submit">Log in</button>
+  </form>
+
+  <section id="v-cal" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="grid">
+      <div class="card">
+        <div class="calh"><button class="btn ghost small" id="prev">‹ Prev</button><h2 id="mTitle"></h2><button class="btn ghost small" id="next">Next ›</button></div>
+        <div class="cal" id="cal"></div>
+        <div class="legend"><span><i style="background:var(--bk)"></i>Booked</span><span><i style="background:linear-gradient(135deg,var(--bk) 50%,#fff 50%);border:1px solid var(--line)"></i>Day or evening booked</span><span><i style="background:#fbecc9;border:1px solid var(--tn)"></i>On hold</span></div>
+      </div>
+      <div class="card">
+        <h2 id="dTitle">Pick a date</h2>
+        <p style="color:var(--soft);margin:4px 0 14px">Customers see Booked / On hold on the website. Names and notes stay private.</p>
+        <form class="form" id="dForm">
+          <div class="row">
+            <label>Status<select id="dStatus"><option value="available">Available</option><option value="booked">Booked</option><option value="tentative">On hold</option></select></label>
+            <label>Slot<select id="dSlot"><option>Full day</option><option>Day</option><option>Evening</option></select></label>
+          </div>
+          <div class="row"><label>Client name<input id="dName"></label><label>Client phone<input id="dPhone" inputmode="tel"></label></div>
+          <label>Private note<textarea id="dNote" rows="3" placeholder="Advance received, menu, décor…"></textarea></label>
+          <button class="btn" type="submit" id="dSave" disabled>Save date</button>
+        </form>
+        <h2 style="margin-top:24px;font-size:24px">Upcoming</h2>
+        <div class="list" id="upcoming"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-enq" hidden>
+    <h2>Enquiries</h2>
+    <div class="filters" id="eFilters"></div>
+    <div class="enq" id="enqList"></div>
+  </section>
+</main>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let KEY = "";
+try { KEY = sessionStorage.getItem("pw-key") || ""; } catch {}
+const api = async (path, opts = {}) => {
+  const r = await fetch(path, {...opts, headers: {"Content-Type": "application/json", "x-admin-key": KEY, ...(opts.headers || {})}});
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw Object.assign(new Error(j.error || "Something went wrong"), {status: r.status});
+  return j;
+};
+const toast = msg => { const t = $("toast"); t.textContent = msg; t.hidden = false; clearTimeout(t._h); t._h = setTimeout(() => t.hidden = true, 2600); };
+const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const nice = s => new Date(s + "T00:00").toLocaleDateString("en-IN", {weekday:"short", day:"numeric", month:"short", year:"numeric"});
+let BOOK = {}, ENQ = [], view = new Date(), sel = null, eFilter = "all";
+view = new Date(view.getFullYear(), view.getMonth(), 1);
+const today = iso(new Date());
+
+async function boot(){
+  try {
+    const [b, e] = await Promise.all([api("api/bookings"), api("api/enquiries")]);
+    if (!b.configured) throw Object.assign(new Error("Storage is not connected. Add Upstash Redis to this project in Vercel."), {status: 503});
+    BOOK = b.dates; ENQ = e.enquiries;
+    $("login").hidden = true; $("tabs").hidden = false; show("cal");
+    draw(); drawEnq(); stats();
+  } catch (err) {
+    $("login").hidden = false; $("tabs").hidden = true; $("v-cal").hidden = true; $("v-enq").hidden = true;
+    if (KEY) $("loginErr").textContent = err.status === 401 ? "That password is not right." : err.message;
+  }
+}
+$("login").onsubmit = e => { e.preventDefault(); KEY = $("pw").value; try { sessionStorage.setItem("pw-key", KEY); } catch {} boot(); };
+$("logout").onclick = () => { KEY = ""; try { sessionStorage.removeItem("pw-key"); } catch {} location.reload(); };
+document.querySelectorAll("#tabs [data-v]").forEach(b => b.onclick = () => show(b.dataset.v));
+function show(v){
+  document.querySelectorAll("#tabs [data-v]").forEach(b => b.setAttribute("aria-selected", b.dataset.v === v));
+  $("v-cal").hidden = v !== "cal"; $("v-enq").hidden = v !== "enq";
+}
+function stats(){
+  const up = Object.entries(BOOK).filter(([d, b]) => d >= today);
+  const month = iso(new Date()).slice(0, 7);
+  const items = [
+    [up.filter(([, b]) => b.status === "booked").length, "Upcoming bookings"],
+    [up.filter(([, b]) => b.status === "tentative").length, "Dates on hold"],
+    [ENQ.filter(e => e.status === "new").length, "New enquiries"],
+    [ENQ.filter(e => e.createdAt.slice(0, 7) === month).length, "Enquiries this month"]
+  ];
+  $("stats").innerHTML = items.map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+}
+function draw(){
+  $("mTitle").textContent = view.toLocaleDateString("en-IN", {month:"long", year:"numeric"});
+  const cal = $("cal");
+  cal.innerHTML = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d => `<div class="dow">${d}</div>`).join("");
+  const first = (view.getDay() + 6) % 7, days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+  for (let i = 0; i < first; i++) cal.appendChild(document.createElement("div"));
+  for (let d = 1; d <= days; d++) {
+    const k = iso(new Date(view.getFullYear(), view.getMonth(), d)), b = document.createElement("button"), bk = BOOK[k];
+    b.type = "button"; b.innerHTML = `${d}<small></small>`;
+    if (bk) {
+      b.classList.add(bk.status === "tentative" ? "tn" : (bk.slot && bk.slot !== "Full day" ? "half" : "bk"));
+      b.querySelector("small").textContent = bk.status === "tentative" ? "hold" : (bk.slot === "Full day" ? "" : bk.slot);
+    }
+    if (k < today) b.classList.add("past");
+    if (k === sel) b.classList.add("sel");
+    b.onclick = () => pick(k);
+    cal.appendChild(b);
+  }
+  const up = Object.entries(BOOK).filter(([d]) => d >= today).sort();
+  $("upcoming").innerHTML = up.length ? "" : `<div class="empty">No upcoming bookings yet.</div>`;
+  up.slice(0, 30).forEach(([d, b]) => {
+    const it = document.createElement("div"); it.className = "item";
+    it.innerHTML = `<span><b></b> <span style="color:var(--soft)"></span></span><span class="pill ${b.status}"></span>`;
+    it.querySelector("b").textContent = nice(d);
+    it.querySelector("span span").textContent = [b.slot, b.name].filter(Boolean).join(" · ");
+    it.querySelector(".pill").textContent = b.status === "tentative" ? "On hold" : "Booked";
+    it.style.cursor = "pointer"; it.onclick = () => { const [y, m] = d.split("-").map(Number); view = new Date(y, m - 1, 1); pick(d); };
+    $("upcoming").appendChild(it);
+  });
+}
+function pick(k){
+  sel = k; const b = BOOK[k] || {};
+  $("dTitle").textContent = nice(k);
+  $("dStatus").value = b.status || "available"; $("dSlot").value = b.slot || "Full day";
+  $("dName").value = b.name || ""; $("dPhone").value = b.phone || ""; $("dNote").value = b.note || "";
+  $("dSave").disabled = false; draw();
+}
+$("dForm").onsubmit = async e => {
+  e.preventDefault(); if (!sel) return;
+  const body = {date: sel, status: $("dStatus").value, slot: $("dSlot").value, name: $("dName").value, phone: $("dPhone").value, note: $("dNote").value};
+  try {
+    const r = await api("api/bookings", {method: "POST", body: JSON.stringify(body)});
+    if (body.status === "available") delete BOOK[sel]; else BOOK[sel] = r.record;
+    draw(); stats(); toast(body.status === "available" ? "Date marked available" : "Date saved. The website shows it now.");
+  } catch (err) { toast(err.message); }
+};
+$("prev").onclick = () => { view.setMonth(view.getMonth() - 1); draw(); };
+$("next").onclick = () => { view.setMonth(view.getMonth() + 1); draw(); };
+
+const ES = ["new", "contacted", "site visit", "booked", "lost"];
+function drawEnq(){
+  $("eFilters").innerHTML = "";
+  ["all", ...ES].forEach(s => {
+    const b = document.createElement("button"); b.type = "button";
+    const n = s === "all" ? ENQ.length : ENQ.filter(e => e.status === s).length;
+    b.textContent = `${s[0].toUpperCase() + s.slice(1)} (${n})`; b.setAttribute("aria-pressed", eFilter === s);
+    b.onclick = () => { eFilter = s; drawEnq(); };
+    $("eFilters").appendChild(b);
+  });
+  const list = ENQ.filter(e => eFilter === "all" || e.status === eFilter);
+  const box = $("enqList"); box.innerHTML = list.length ? "" : `<div class="empty">No enquiries here yet. New ones from the website appear at the top.</div>`;
+  list.forEach(e => {
+    const c = document.createElement("article"); c.className = "eq";
+    c.innerHTML = `<header><h3></h3><span class="pill"></span></header>
+      <dl><div><dt>Event date</dt><dd class="f-date"></dd></div><div><dt>Function</dt><dd class="f-type"></dd></div><div><dt>Guests</dt><dd class="f-guests"></dd></div><div><dt>Space</dt><dd class="f-space"></dd></div><div><dt>Mobile</dt><dd class="f-phone"></dd></div><div><dt>Received</dt><dd class="f-at"></dd></div></dl>
+      <p class="f-note" style="margin:0"></p>
+      <div class="row" style="align-items:end"><label>Status<select class="f-st">${ES.map(s => `<option>${s}</option>`).join("")}</select></label>
+      <a class="btn ghost small f-wa" target="_blank" rel="noopener">WhatsApp</a><a class="btn ghost small f-tel">Call</a><button class="btn small f-book" type="button">Mark date booked</button></div>`;
+    c.querySelector("h3").textContent = e.name;
+    c.querySelector(".pill").textContent = e.status; c.querySelector(".pill").classList.add(e.status === "new" ? "new" : "x");
+    c.querySelector(".f-date").textContent = `${nice(e.date)} · ${e.slot || ""}`;
+    c.querySelector(".f-type").textContent = e.type; c.querySelector(".f-guests").textContent = e.guests;
+    c.querySelector(".f-space").textContent = e.space; c.querySelector(".f-phone").textContent = e.phone;
+    c.querySelector(".f-at").textContent = new Date(e.createdAt).toLocaleString("en-IN", {dateStyle:"medium", timeStyle:"short"});
+    c.querySelector(".f-note").textContent = e.note || "";
+    const tenDigits = e.phone.slice(-10);
+    c.querySelector(".f-wa").href = `https://wa.me/91${tenDigits}?text=${encodeURIComponent(`Namaste ${e.name}, thank you for your enquiry for ${nice(e.date)} at Panchwati Party Lawn.`)}`;
+    c.querySelector(".f-tel").href = `tel:+91${tenDigits}`;
+    const st = c.querySelector(".f-st"); st.value = e.status;
+    st.onchange = async () => { try { await api("api/enquiries", {method:"PATCH", body: JSON.stringify({id: e.id, status: st.value})}); e.status = st.value; drawEnq(); stats(); toast("Status updated"); } catch (err) { toast(err.message); } };
+    c.querySelector(".f-book").onclick = async () => {
+      try {
+        const r = await api("api/bookings", {method:"POST", body: JSON.stringify({date: e.date, status: "booked", slot: e.slot === "Day" || e.slot === "Evening" ? e.slot : "Full day", name: e.name, phone: e.phone, note: `${e.type}, ${e.guests}`})});
+        BOOK[e.date] = r.record;
+        await api("api/enquiries", {method:"PATCH", body: JSON.stringify({id: e.id, status: "booked"})}); e.status = "booked";
+        draw(); drawEnq(); stats(); toast(`${nice(e.date)} is now booked`);
+      } catch (err) { toast(err.message); }
+    };
+    box.appendChild(c);
+  });
+}
+if (KEY) boot();
+</script>
+</body>
+</html>
